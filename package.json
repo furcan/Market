@@ -1,6 +1,8 @@
 {
   "name": "market",
-  "version": "0.1.0",
+  "description": "Market",
+  "homepage": "https://furcan.github.io/Market/",
+  "version": "1.0.0-Beta.01",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
