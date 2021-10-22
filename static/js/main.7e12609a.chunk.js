@@ -1,2 +1,0 @@
-(this.webpackJsonpmarket=this.webpackJsonpmarket||[]).push([[0],{9:function(t,e,n){"use strict";n.r(e);var r=n(1),c=n.n(r),s=n(3),d=n(0);var i=function(){return Object(d.jsx)("h1",{"data-testid":"App",children:"Market"})},a=function(){return Object(d.jsx)(c.a.StrictMode,{children:Object(d.jsx)(i,{})})},j=window.document.getElementById("MarketApp");(null===j||void 0===j?void 0:j.hasChildNodes())?Object(s.hydrate)(Object(d.jsx)(a,{}),j):j&&Object(s.render)(Object(d.jsx)(a,{}),j)}},[[9,1,2]]]);
-//# sourceMappingURL=main.7e12609a.chunk.js.map
