@@ -1,0 +1,19 @@
+@import "presentation/styles/variables";
+
+.menu {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  @include media_up($breakpoint_tablet) {
+    display: none;
+  }
+
+  &__icon {
+    width: 100%;
+    height: auto;
+  }
+}
