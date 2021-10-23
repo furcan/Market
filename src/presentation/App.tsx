@@ -2,19 +2,19 @@ function App(): JSX.Element {
 
   const testOnClickAsync = async (): Promise<void> => {
     try {
-      const request = await fetch('https://furcan.herokuapp.com/api/posts?_page=1&_limit=2', {
+      const response = await fetch('https://furcan.herokuapp.com/api/products?_page=1&_limit=16', {
         method: 'get',
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      console.log('request: ', request);
+      console.log('response: ', response);
 
-      const totalCount = request.headers.get('X-Total-Count');
+      const totalCount = response.headers.get('X-Total-Count');
       console.log('totalCount: ', totalCount);
 
-      const response = await request.json();
-      console.log('response: ', response);
+      const data = await response.json();
+      console.log('data: ', data);
 
     } catch (error) {
       console.error(error);
