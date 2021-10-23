@@ -11,7 +11,9 @@ $breakpoint_max: 240rem; // 3840px
 $color_black: #000;
 $color_white: #fff;
 $color_dark: #525252;
-$color_light: #e5e5e5;
+$color_light: #fafafa;
+$color_blue: #1ea4ce;
+$color_blue_secondary: #147594;
 
 // transitions
 $transition_base: all 0.25s ease-in-out;
@@ -34,6 +36,15 @@ $font_family_base: "Open Sans", sans-serif;
 $font_size_base: 0.875rem;
 $font_lineheight_base: 1.285;
 $font_weight_base: 400;
+$font_weight_regular: 400;
+$font_weight_medium: 500;
+$font_weight_semibold: 600;
+$font_weight_bold: 700;
+$font_weight_extrabold: 800;
+
+// constants
+$header_height_mobile: 3.75rem;
+$header_height_desktop: 4.79rem;
 
 // mixins
 @import "mixins";
