@@ -9,6 +9,7 @@
   justify-content: space-between;
 
   &__filters {
+    z-index: 2;
     transition: $transition_visibility;
     opacity: 0;
     visibility: hidden;
@@ -20,7 +21,7 @@
     background: palegoldenrod;
     padding: 2rem;
 
-    &.state--active {
+    &--visible {
       opacity: 1;
       visibility: visible;
     }
@@ -41,6 +42,7 @@
   }
 
   &__basket {
+    z-index: 1;
     transition: $transition_visibility;
     opacity: 0;
     visibility: hidden;
@@ -52,7 +54,7 @@
     background: palevioletred;
     padding: 2rem;
 
-    &.state--active {
+    &--visible {
       opacity: 1;
       visibility: visible;
     }
