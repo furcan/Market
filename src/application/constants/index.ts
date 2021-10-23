@@ -8,6 +8,11 @@ interface IConstants {
     currency: string;
     locale: string;
   };
+  text: {
+    footer: {
+      privacy: string;
+    };
+  };
 }
 
 const constants: IConstants = {
@@ -17,6 +22,11 @@ const constants: IConstants = {
     name: packageJSON?.description,
     locale: 'tr-TR',
     currency: '₺',
+  },
+  text: {
+    footer: {
+      privacy: 'Privacy Policy',
+    },
   },
 };
 

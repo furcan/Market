@@ -1,0 +1,43 @@
+@import "presentation/styles/variables";
+
+.footer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__container {
+    width: 100%;
+    max-width: calc(#{$breakpoint_laptop} + 2rem);
+    margin: 0 auto;
+    padding: 3.375rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__copyright {
+    font-size: 0.8125rem;
+    line-height: 1.4375rem;
+    color: $color_blue;
+  }
+
+  &__seperator {
+    font-size: 0.8125rem;
+    color: $color_blue;
+    margin: 0 1rem;
+  }
+
+  &__link {
+    transition: $transition_color;
+    font-size: 0.8125rem;
+    color: $color_blue;
+
+    &:hover {
+      color: $color_blue_secondary;
+    }
+  }
+}
