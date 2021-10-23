@@ -1,11 +1,39 @@
 // breakpoints
 $breakpoint_min: 20rem; // 320px
-$breakpoint_mobile: 36rem; // 576px
+$breakpoint_mobile: 34rem; // 544px
 $breakpoint_tablet: 48rem; // 768px
 $breakpoint_minibook: 64rem; // 1024px
-$breakpoint_laptop: 77.5rem; // 1240px
-$breakpoint_pc: 84rem; // 1344px
+$breakpoint_laptop: 77rem; // 1232px
+$breakpoint_pc: 90rem; // 1440px
 $breakpoint_max: 240rem; // 3840px
+
+// colors
+$color_black: #000;
+$color_white: #fff;
+$color_dark: #525252;
+$color_light: #e5e5e5;
+
+// transitions
+$transition_base: all 0.25s ease-in-out;
+$transition_transform: transform 0.25s linear;
+$transition_opacity: opacity 0.25s ease-in-out;
+$transition_visibility: opacity 0.25s ease-in-out, visibility 0.25s ease-in-out;
+$transition_background: background 0.25s ease-in-out;
+$transition_boxshadow: box-shadow 0.25s ease-in-out;
+$transition_border: border 0.25s ease-in-out, border-radius 0.25s ease-in-out;
+$transition_color: color 0.25s ease-in-out;
+$transition_width: width 0.25s ease-in-out;
+$transition_height: height 0.25s ease-in-out;
+$transition_left: left 0.25s ease-in-out;
+$transition_top: top 0.25s ease-in-out;
+$transition_right: right 0.25s ease-in-out;
+$transition_bottom: bottom 0.25s ease-in-out;
+
+// typography
+$font_family_base: "Open Sans", sans-serif;
+$font_size_base: 0.875rem;
+$font_lineheight_base: 1.285;
+$font_weight_base: 400;
 
 // mixins
 @import "mixins";

@@ -1,0 +1,113 @@
+@import "variables";
+
+// Reset: begin
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  max-width: $breakpoint_max;
+  overflow-x: hidden;
+  margin: 0 auto;
+  padding: 0;
+  color: $color_dark;
+  background: $color_light;
+  font-family: $font_family_base;
+  font-size: $font_size_base;
+  line-height: $font_lineheight_base;
+  font-weight: $font_weight_base;
+
+  @include media_down(20rem) {
+    min-width: 20rem !important;
+  }
+}
+
+a {
+  user-select: none;
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  user-select: none;
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  background: transparent;
+  padding: 0;
+  border: none;
+
+  &[disabled] {
+    pointer-events: none;
+  }
+}
+
+img {
+  font-size: 0.5rem;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+input,
+select,
+option {
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+b,
+strong {
+  font-weight: 500;
+}
+
+*::-webkit-scrollbar {
+  height: 0.25rem;
+  width: 0.25rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba($color_black, 0.04);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba($color_black, 0.08);
+  cursor: pointer;
+}
+
+div,
+nav,
+ul {
+  scrollbar-color: rgba($color_black, 0.08) rgba($color_black, 0.04);
+  scrollbar-width: thin;
+}
+
+*::selection {
+  color: $color_white;
+  background: $color_black;
+}
+// Reset: end

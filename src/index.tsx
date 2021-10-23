@@ -3,6 +3,8 @@ import { hydrate, render } from 'react-dom';
 
 import App from 'presentation/App';
 
+import 'presentation/styles/styles.global.scss';
+
 const MarketApp = (): JSX.Element => {
   return (
     <React.StrictMode>
