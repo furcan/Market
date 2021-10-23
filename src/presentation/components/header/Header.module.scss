@@ -39,6 +39,11 @@
 
   &__logo {
     margin: 0 auto;
+    transform: scale(0.9);
+
+    @include media_up($breakpoint_tablet) {
+      transform: scale(1);
+    }
   }
 
   &__basket {
