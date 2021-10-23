@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { FiMenu as IconMenu, FiX as IconClose } from 'react-icons/fi';
 
-import { rdxMarketSelector, rdxMarketFiltersVisibilityAsync } from 'application/redux';
+import { rdxMarketSelector, rdxMarketFiltersVisibilityAsync } from 'application/redux/market';
 
 import styles from 'presentation/components/header/partials/menu/Menu.module.scss';
 

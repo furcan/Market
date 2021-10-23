@@ -1,4 +1,4 @@
-import { IReduxMarketActions, IReduxMarketState, rdxMarketInitialState, rdxMarketActionTypes } from 'application/redux';
+import { IReduxMarketActions, IReduxMarketState, rdxMarketInitialState, rdxMarketActionTypes } from 'application/redux/market';
 
 /* eslint-disable indent */
 const marketReducer = (state = rdxMarketInitialState, action: IReduxMarketActions): IReduxMarketState => {

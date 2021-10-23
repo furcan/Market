@@ -1,9 +1,5 @@
 import { Dispatch } from 'redux';
 
-interface IReduxMarketDispatch {
-  (dispatch: Dispatch<IReduxMarketActions>): Promise<void>;
-}
-
 interface IReduxMarketState {
   isFiltersVisible: boolean;
   isBasketVisible: boolean;
@@ -22,9 +18,11 @@ interface IReduxMarketActions {
   actionBasketVisibility?: boolean,
 }
 
+interface IReduxMarketDispatch {
+  (dispatch: Dispatch<IReduxMarketActions>): Promise<void>;
+}
 
 export type {
-  Dispatch,
   IReduxMarketDispatch,
   IReduxMarketState,
   IReduxMarketActionTypes,

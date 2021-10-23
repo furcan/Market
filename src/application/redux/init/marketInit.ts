@@ -1,4 +1,4 @@
-import { IReduxMarketState } from 'application/redux';
+import { IReduxMarketState } from 'application/redux/market';
 
 const rdxMarketInitialState: IReduxMarketState = {
   isFiltersVisible: false,

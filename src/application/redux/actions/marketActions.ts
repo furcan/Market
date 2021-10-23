@@ -1,4 +1,6 @@
-import { Dispatch, IReduxMarketActionTypes, IReduxMarketActions, IReduxMarketDispatch, IReduxMarketState } from 'application/redux';
+import { Dispatch } from 'redux';
+
+import { IReduxMarketActionTypes, IReduxMarketActions, IReduxMarketDispatch, IReduxMarketState } from 'application/redux/market';
 
 const rdxMarketActionTypes: IReduxMarketActionTypes = {
   MARKET_FILTERS_VISIBILITY: 'MARKET_FILTERS_VISIBILITY',

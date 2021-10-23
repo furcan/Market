@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { rdxMarketSelector } from 'application/redux';
+import { rdxMarketSelector } from 'application/redux/market';
 
 import styles from 'presentation/screens/products/Products.module.scss';
 
@@ -17,6 +17,11 @@ function Products(): JSX.Element {
       </div>
       <div className={styles.products__content}>
         <h1>PRODUCTS</h1>
+
+        <button type="button">
+          <span>TODO</span>
+        </button>
+
       </div>
       <div className={[
         styles.products__basket,

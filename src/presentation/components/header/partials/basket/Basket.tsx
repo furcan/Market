@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { rdxMarketSelector, rdxMarketBasketVisibilityAsync } from 'application/redux';
+import { rdxMarketSelector, rdxMarketBasketVisibilityAsync } from 'application/redux/market';
 
 import { constants } from 'application/constants';
 import { convertPriceToLocaleString } from 'application/helpers';
