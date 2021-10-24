@@ -17,6 +17,7 @@ const productsReducer = (state = rdxProductsInitialState, action: IReduxProducts
       return {
         ...state,
         filterSortOrder: action.actionFilterSortOrder || rdxProductsInitialState.filterSortOrder,
+        filterPage: rdxProductsInitialState.filterPage,
       };
     // Product Filter SortOrder: end
 
@@ -25,6 +26,7 @@ const productsReducer = (state = rdxProductsInitialState, action: IReduxProducts
       return {
         ...state,
         filterType: action.actionFilterType || rdxProductsInitialState.filterType,
+        filterPage: rdxProductsInitialState.filterPage,
       };
     // Product Filter Types: end
 
