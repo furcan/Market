@@ -2,6 +2,7 @@
 
 .items {
   width: 100%;
+  min-height: 16rem;
   padding: 1.25rem;
   background: $color_white;
   border-radius: 0.125rem;
@@ -25,6 +26,51 @@
 
     @include media_up($breakpoint_mobile) {
       width: calc(25% - 1.125rem);
+    }
+
+    &--placeholder {
+      min-height: 10rem;
+      background: $color_blue_light;
+      filter: brightness(0.99);
+      animation: animation_item_loading 1s ease-in-out 0s infinite;
+      border-radius: 0.25rem;
+
+      @keyframes animation_item_loading {
+        0% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0.5;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+    }
+
+    &--failure {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+
+      &__icon {
+        width: 2rem;
+        height: 2rem;
+        margin: 0 auto 0.5rem;
+        color: $color_theme_red;
+      }
+
+      &__message {
+        font-size: 0.875rem;
+        font-weight: $font_weight_semibold;
+        color: $color_theme_red;
+      }
     }
 
     &:nth-child(2n) {
@@ -54,6 +100,7 @@
     }
 
     &__media {
+      position: relative;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -65,9 +112,33 @@
       border: 0.0735rem solid $color_purple_light;
       border-radius: 0.75rem;
 
+      &::before {
+        content: "";
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+        background: $color_light_secondary;
+        width: calc(100% - 2rem);
+        height: calc(100% - 2rem);
+      }
+
       &__image {
+        opacity: 0;
+        visibility: hidden;
         width: 100%;
         height: auto;
+      }
+    }
+
+    $colors_repeater: hotpink, red, orange, yellow, green, purple, turquoise, indigo, violet;
+    @for $i from 1 through 16 {
+      $randomColor: lighten(nth($colors_repeater, random(length($colors_repeater))), 20%);
+
+      &:nth-child(#{length($colors_repeater)}n + #{$i}) &__media {
+        &::before {
+          background: $randomColor;
+          background: linear-gradient(to right top, lighten($randomColor, 2%), lighten($randomColor, 10%));
+        }
       }
     }
 
