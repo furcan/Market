@@ -3,6 +3,32 @@ import { IReduxProductsActions, IReduxProductsState, rdxProductsInitialState, rd
 /* eslint-disable indent */
 const productsReducer = (state = rdxProductsInitialState, action: IReduxProductsActions): IReduxProductsState => {
   switch (action.type) {
+
+    // Product Filter Page: begin
+    case rdxProductsActionTypes.PRODUCTS_FILTER_SET_PAGE:
+      return {
+        ...state,
+        filterPage: action.actionFilterPage || rdxProductsInitialState.filterPage,
+      };
+    // Product Filter Page: end
+
+    // Product Filter SortOrder: begin
+    case rdxProductsActionTypes.PRODUCTS_FILTER_SET_SORTORDER: // TODO: actions will be added
+      return {
+        ...state,
+        filterSortOrder: action.actionFilterSortOrder || rdxProductsInitialState.filterSortOrder,
+      };
+    // Product Filter SortOrder: end
+
+    // Product Filter Types: begin
+    case rdxProductsActionTypes.PRODUCTS_FILTER_SET_TYPE:
+      return {
+        ...state,
+        filterType: action.actionFilterType || rdxProductsInitialState.filterType,
+      };
+    // Product Filter Types: end
+
+
     // Product Data Types: begin
     case rdxProductsActionTypes.PRODUCTS_TYPES_GET_DATA_LOADING:
       return {
@@ -51,24 +77,6 @@ const productsReducer = (state = rdxProductsInitialState, action: IReduxProducts
         dataProductItemsTotalCount: action.actionDataProductItems?.totalCount || rdxProductsInitialState.dataProductItemsTotalCount,
       };
     // Products Data: end
-
-
-    // Product Filter SortOrder: begin
-    case rdxProductsActionTypes.PRODUCTS_FILTER_SET_SORTORDER: // TODO: actions will be added
-      return {
-        ...state,
-        filterSortOrder: action.actionFilterSortOrder || rdxProductsInitialState.filterSortOrder,
-      };
-    // Product Filter SortOrder: end
-
-    // Product Filter Types: begin
-    case rdxProductsActionTypes.PRODUCTS_FILTER_SET_TYPE:
-      return {
-        ...state,
-        filterType: action.actionFilterType || rdxProductsInitialState.filterType,
-      };
-    // Product Filter Types: end
-
 
     default:
       return state;

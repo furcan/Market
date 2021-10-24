@@ -1,6 +1,7 @@
 @import "presentation/styles/variables";
 
 .items {
+  transition: $transition_opacity;
   width: 100%;
   min-height: 16rem;
   padding: 1.25rem;
@@ -11,6 +12,11 @@
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
+
+  &--loading {
+    opacity: 0.25;
+    pointer-events: none;
+  }
 
   &__single {
     position: relative;

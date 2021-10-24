@@ -5,6 +5,7 @@ import { rdxMarketSelector } from 'application/redux/market';
 
 import Types from 'presentation/components/filters/types/Types';
 import Items from 'presentation/components/items/Items';
+import Pagination from 'presentation/components/pagination/Pagination';
 
 import styles from 'presentation/screens/products/Products.module.scss';
 
@@ -23,6 +24,7 @@ function Products(): JSX.Element {
         <h2 className={styles.products__content__title}>{constants.text.products.mainTitle}</h2>
         <Types />
         <Items />
+        <Pagination />
       </div>
       <div className={[
         styles.products__basket,

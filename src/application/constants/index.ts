@@ -23,6 +23,8 @@ interface IConstants {
     products: {
       mainTitle: string;
       buttonAdd: string;
+      buttonNext: string;
+      buttonPrev: string;
     };
     footer: {
       privacy: string;
@@ -53,6 +55,8 @@ const constants: IConstants = {
     products: {
       mainTitle: 'Products',
       buttonAdd: 'Add',
+      buttonNext: 'Next',
+      buttonPrev: 'Prev',
     },
     footer: {
       privacy: 'Privacy Policy',

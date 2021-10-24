@@ -14,7 +14,7 @@
   }
 
   &__button {
-    transition: $transition_background, $transition_color;
+    transition: $transition_background, $transition_color, $transition_opacity;
     min-width: 3.75rem;
     height: 1.875rem;
     padding: 0 1rem;
@@ -63,6 +63,11 @@
           opacity: 1;
         }
       }
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
     }
   }
 

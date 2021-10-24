@@ -21,10 +21,10 @@ function Products(): JSX.Element {
   } = useSelector(rdxProductsSelector);
   const placeholder: string[] = Array(constants.api.productsLimit).fill('');
 
-  useEffect(() => { // TODO, FILTERS WILL BE CHANGED
-    if (filterType && filterSortOrder) {
+  useEffect(() => {
+    if (filterType) {
       dispatch(rdcProductsItemsGetDataAsync(
-        [filterType, filterSortOrder],
+        [filterType, filterSortOrder], // TODO, FILTERS WILL BE EXTENDED
         filterPage,
       ));
     }
@@ -35,10 +35,14 @@ function Products(): JSX.Element {
     filterSortOrder,
   ]);
 
+
   return (
-    <div className={styles.items}>
+    <div className={[
+      styles.items,
+      (loadingProductItems ? (styles['items--loading'] || '') : ''),
+    ].join(' ')}>
       {
-        loadingProductItems &&
+        (loadingProductItems && dataProductItems.length < 1) &&
         placeholder.map((_, index) => <div key={index} className={[styles.items__single, styles['items__single--placeholder'] || ''].join(' ')}></div>)
       }
       {
@@ -49,7 +53,7 @@ function Products(): JSX.Element {
         </div>
       }
       {
-        (!loadingProductItems && !failureProductsItems && dataProductItems.length > 0) &&
+        (!failureProductsItems && dataProductItems.length > 0) &&
         dataProductItems.map((item: IApiProductItem, index: number) => (
           <div
             key={index}

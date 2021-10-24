@@ -1,12 +1,13 @@
 import { Dispatch } from 'redux';
 
 import { Api, IApiProductItems, IApiProductType } from 'application/api';
-import { addSomeDelayAsync } from 'application/helpers';
+import { actionWindowScrollToTop, addSomeDelayAsync } from 'application/helpers';
 import { IReduxProductsActionTypes, IReduxProductsActions, IReduxProductsDispatch, IReduxProductsState } from 'application/redux/products';
 
 const rdxProductsActionTypes: IReduxProductsActionTypes = {
-  PRODUCTS_FILTER_SET_TYPE: 'PRODUCTS_FILTER_SET_TYPE',
+  PRODUCTS_FILTER_SET_PAGE: 'PRODUCTS_FILTER_SET_PAGE',
   PRODUCTS_FILTER_SET_SORTORDER: 'PRODUCTS_FILTER_SET_SORTORDER',
+  PRODUCTS_FILTER_SET_TYPE: 'PRODUCTS_FILTER_SET_TYPE',
   PRODUCTS_TYPES_GET_DATA_LOADING: 'PRODUCTS_TYPES_GET_DATA_LOADING',
   PRODUCTS_TYPES_GET_DATA_FAILURE: 'PRODUCTS_TYPES_GET_DATA_FAILURE',
   PRODUCTS_TYPES_SET_DATA: 'PRODUCTS_TYPES_SET_DATA',
@@ -17,6 +18,17 @@ const rdxProductsActionTypes: IReduxProductsActionTypes = {
 
 const rdxProductsSelector = (state: IReduxProductsState): IReduxProductsState => state.productsReducer;
 
+
+// Products Filter Set Page: begin
+const productsFilterSetPage = (pageNumber: number): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_FILTER_SET_PAGE,
+  actionFilterPage: pageNumber,
+});
+
+const rdxProductsFilterSetPageAsync = (pageNumber: number): IReduxProductsDispatch => async (dispatch: Dispatch<IReduxProductsActions>) => {
+  dispatch(productsFilterSetPage(pageNumber));
+};
+// Products Filter Set Page: end
 
 // Products Filter Set Type: begin
 const productsFilterSetType = (type: string): IReduxProductsActions => ({
@@ -47,7 +59,7 @@ const rdxProductsTypesGetDataAsync = (): IReduxProductsDispatch => async (dispat
   try {
     dispatch(productsTypesGetDataLoading());
 
-    await addSomeDelayAsync();
+    await addSomeDelayAsync(500);
 
     const data: IApiProductType[] | null = await new Api().getProductTypes();
 
@@ -85,7 +97,7 @@ const rdcProductsItemsGetDataAsync = (filters: string[], page: number): IReduxPr
   try {
     dispatch(productsItemsGetDataLoading());
 
-    await addSomeDelayAsync();
+    await addSomeDelayAsync(500);
 
     const data: IApiProductItems | null = await new Api().getProductsByFiltersAndPage(filters, page);
 
@@ -94,6 +106,8 @@ const rdcProductsItemsGetDataAsync = (filters: string[], page: number): IReduxPr
     }
 
     dispatch(productsItemsSetData(data));
+
+    actionWindowScrollToTop();
   } catch {
     dispatch(productsItemsGetDataFailure());
   }
@@ -103,7 +117,8 @@ const rdcProductsItemsGetDataAsync = (filters: string[], page: number): IReduxPr
 export {
   rdxProductsActionTypes,
   rdxProductsSelector,
-  rdxProductsTypesGetDataAsync,
+  rdxProductsFilterSetPageAsync,
   rdxProductsFilterSetTypeAsync,
+  rdxProductsTypesGetDataAsync,
   rdcProductsItemsGetDataAsync,
 };

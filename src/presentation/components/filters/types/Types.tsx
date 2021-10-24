@@ -10,12 +10,13 @@ import { constants } from 'application/constants';
 function Types(): JSX.Element {
   const dispatch = useDispatch();
   const {
+    loadingProductItems,
     loadingProductTypes,
     failureProductTypes,
     dataProductTypes,
     filterType,
   } = useSelector(rdxProductsSelector);
-  const placeholder: string[] = Array(6).fill('');
+  const placeholder: string[] = Array((dataProductTypes.length || 6)).fill('');
 
   useEffect(() => {
     if (loadingProductTypes) {
@@ -38,7 +39,7 @@ function Types(): JSX.Element {
         <p className={styles.types__failure}>{constants.text.common.failure}</p>
       }
       {
-        dataProductTypes.length > 0 &&
+        (!loadingProductTypes && !failureProductTypes && dataProductTypes.length > 0) &&
         dataProductTypes.map((type: IApiProductType, index: number) => (
           <button
             key={index}
@@ -46,6 +47,7 @@ function Types(): JSX.Element {
             className={[
               styles.types__button,
               (filterType === type.queryString ? (styles['types__button--selected'] || '') : ''),
+              (loadingProductItems ? (styles['types__button--disabled'] || '') : ''),
             ].join(' ')}
           >
             <span>{type.name}</span>

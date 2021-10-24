@@ -27,8 +27,9 @@ interface IReduxProductsState {
 }
 
 interface IReduxProductsActionTypes {
-  PRODUCTS_FILTER_SET_TYPE: string;
+  PRODUCTS_FILTER_SET_PAGE: string;
   PRODUCTS_FILTER_SET_SORTORDER: string;
+  PRODUCTS_FILTER_SET_TYPE: string;
   PRODUCTS_TYPES_GET_DATA_LOADING: string;
   PRODUCTS_TYPES_GET_DATA_FAILURE: string;
   PRODUCTS_TYPES_SET_DATA: string;
@@ -39,6 +40,7 @@ interface IReduxProductsActionTypes {
 
 interface IReduxProductsActions {
   type: string;
+  actionFilterPage?: number;
   actionFilterSortOrder?: EFilterSortOrder;
   actionFilterType?: string;
   actionDataProductTypes?: IApiProductType[];

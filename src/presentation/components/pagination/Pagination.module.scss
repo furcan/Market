@@ -1,0 +1,137 @@
+@import "presentation/styles/variables";
+
+.pagination {
+  transition: $transition_opacity;
+  width: 100%;
+  margin: 2rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  &--loading {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &--placeholder {
+    height: 2.5rem;
+    border-radius: 0.125rem;
+    background: $color_blue_light;
+    filter: brightness(0.99);
+    animation: animation_placeholder_loading 1s ease-in-out 0s infinite;
+
+    @keyframes animation_placeholder_loading {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__seperator {
+    width: 2rem;
+    height: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    color: $color_gray_pagination;
+    font-size: 0.7rem;
+    font-weight: $font_weight_regular;
+  }
+
+  &__prev,
+  &__next {
+    transition: $transition_color, $transition_opacity;
+    width: 5.4rem;
+    margin-left: calc(50% - (5.4rem / 2));
+    margin-right: calc(50% - (5.4rem / 2));
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    border-radius: 0.125rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    color: $color_gray_pagination;
+    font-size: 0.875rem;
+    font-weight: $font_weight_semibold;
+
+    @include media_up($breakpoint_mobile) {
+      width: auto;
+    }
+
+    &[disabled] {
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    &:hover {
+      color: $color_blue;
+    }
+
+    &__icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: inherit;
+    }
+  }
+
+  &__prev {
+    @include media_up($breakpoint_mobile) {
+      margin-left: 0;
+      margin-right: 2rem;
+    }
+
+    &__icon {
+      margin-right: 0.375rem;
+    }
+  }
+
+  &__next {
+    @include media_up($breakpoint_mobile) {
+      margin-left: 2rem;
+      margin-right: 0;
+    }
+
+    &__icon {
+      margin-left: 0.375rem;
+    }
+  }
+
+  &__button {
+    transition: $transition_background, $transition_color;
+    width: 2rem;
+    height: 2.5rem;
+    border-radius: 0.125rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    color: $color_gray_pagination;
+    font-size: 0.875rem;
+    font-weight: $font_weight_semibold;
+
+    &:hover {
+      color: $color_blue;
+    }
+
+    &--selected {
+      color: $color_white;
+      background: $color_blue;
+
+      &:hover {
+        color: $color_white;
+        background: $color_blue_dark;
+      }
+    }
+  }
+}
