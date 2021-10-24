@@ -7,7 +7,9 @@ interface IConstants {
     pathTypes: string;
     pathBrands: string;
     pathTags: string;
-    productsLimit: number;
+    limitProductsItems: number;
+    limitProductsBrands: number;
+    limitProductsTags: number;
   };
   app: {
     url: string;
@@ -44,7 +46,9 @@ const constants: IConstants = {
     pathTypes: '/types',
     pathBrands: '/brands',
     pathTags: '/tags',
-    productsLimit: 16,
+    limitProductsItems: 16,
+    limitProductsBrands: 18,
+    limitProductsTags: 18,
   },
   app: {
     url: packageJSON?.homepage,

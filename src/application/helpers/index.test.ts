@@ -20,18 +20,18 @@ describe('Helper functions should be work as expected.', () => {
       filters: ['param1=1881', 'param2=1923'],
       page: 19,
     });
-    expect(example1).toBe(`https://github.com/furcan?param1=1881&param2=1923&_page=19&_limit=${constants.api.productsLimit}`);
+    expect(example1).toBe(`https://github.com/furcan?param1=1881&param2=1923&_page=19&_limit=${constants.api.limitProductsItems}`);
 
     const example2 = generatorApiUrlQueryStrings({
       endpoint: 'https://github.com/furcan',
       filters: ['param1=mehmet,baris,manco', 'param2=domates,biber,patlican'],
       page: 23,
     });
-    expect(example2).toBe(`https://github.com/furcan?param1=mehmet,baris,manco&param2=domates,biber,patlican&_page=23&_limit=${constants.api.productsLimit}`);
+    expect(example2).toBe(`https://github.com/furcan?param1=mehmet,baris,manco&param2=domates,biber,patlican&_page=23&_limit=${constants.api.limitProductsItems}`);
   });
 
   it('"generatorPaginationItems" function should return a valid pagination data.', () => {
-    const appPageLimit = constants.api.productsLimit;
+    const appPageLimit = constants.api.limitProductsItems;
 
     const example1TotalPages = 10;
     const example1 = generatorPaginationItems(1, (appPageLimit * example1TotalPages), '---');

@@ -43,7 +43,7 @@ interface IGeneratorApiUrlQueryStrings {
 }
 
 const generatorApiUrlQueryStrings = ({ endpoint, filters, page }: IGeneratorApiUrlQueryStrings): string => {
-  return `${endpoint}?${filters.join('&')}&_page=${page}&_limit=${constants.api.productsLimit}`;
+  return `${endpoint}?${filters.join('&')}&_page=${page}&_limit=${constants.api.limitProductsItems}`;
 };
 // Generator Api URL Query Strings: end
 
@@ -54,7 +54,7 @@ interface IGeneratorPaginationItems {
 }
 
 const generatorPaginationItems = (currentPage: number, totalPage: number, seperatorString?: string): IGeneratorPaginationItems => {
-  const totalItemsCount = Math.ceil(totalPage / constants.api.productsLimit);
+  const totalItemsCount = Math.ceil(totalPage / constants.api.limitProductsItems);
   const arrayOfItems: number[] = Array(totalItemsCount).fill('').map((_, i: number) => i + 1);
 
   if (totalItemsCount < 11) {

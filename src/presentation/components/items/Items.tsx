@@ -19,7 +19,7 @@ function Products(): JSX.Element {
     failureProductsItems,
     dataProductItems,
   } = useSelector(rdxProductsSelector);
-  const placeholder: string[] = Array(constants.api.productsLimit).fill('');
+  const placeholder: string[] = Array(constants.api.limitProductsItems).fill('');
 
   useEffect(() => {
     if (filterType) {
