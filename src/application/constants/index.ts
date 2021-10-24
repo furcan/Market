@@ -20,6 +20,11 @@ interface IConstants {
     common: {
       failure: string;
     };
+    filters: {
+      titleSorting: string;
+      titleBrands: string;
+      titleTags: string;
+    };
     products: {
       mainTitle: string;
       buttonAdd: string;
@@ -51,6 +56,11 @@ const constants: IConstants = {
   text: {
     common: {
       failure: 'Something went wrong.',
+    },
+    filters: {
+      titleSorting: 'Sorting',
+      titleBrands: 'Brands',
+      titleTags: 'Tags',
     },
     products: {
       mainTitle: 'Products',

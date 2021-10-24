@@ -4,10 +4,10 @@ import { FiAlertTriangle as IconFailure } from 'react-icons/fi';
 
 import { constants } from 'application/constants';
 import { convertPriceToLocaleString } from 'application/helpers';
+import { IApiProductItem } from 'application/api';
 import { rdxProductsSelector, rdcProductsItemsGetDataAsync } from 'application/redux/products';
 
 import styles from 'presentation/components/items/Items.module.scss';
-import { IApiProductItem } from 'application/api';
 
 function Products(): JSX.Element {
   const dispatch = useDispatch();
@@ -72,7 +72,7 @@ function Products(): JSX.Element {
               <span className={styles.items__single__price__currency}>{constants.app.currency}</span>
               <span>{convertPriceToLocaleString(item.price)}</span>
             </p>
-            <h3 className={styles.items__single__title}>{item.name}</h3>
+            <h2 className={styles.items__single__title}>{item.name}</h2>
             <button
               type="button"
               onClick={() => alert('TODO: ADD TO BASKET => REDUX')}

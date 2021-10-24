@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
 
+import { EFilterSortOrder } from 'application/enumerations/filter-sort-order';
 import { Api, IApiProductItems, IApiProductType } from 'application/api';
 import { actionWindowScrollToTop, addSomeDelayAsync } from 'application/helpers';
 import { IReduxProductsActionTypes, IReduxProductsActions, IReduxProductsDispatch, IReduxProductsState } from 'application/redux/products';
@@ -29,6 +30,17 @@ const rdxProductsFilterSetPageAsync = (pageNumber: number): IReduxProductsDispat
   dispatch(productsFilterSetPage(pageNumber));
 };
 // Products Filter Set Page: end
+
+// Products Filter Set SortOrder: begin
+const productsFilterSetSortOrder = (sortOrder: EFilterSortOrder): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_FILTER_SET_SORTORDER,
+  actionFilterSortOrder: sortOrder,
+});
+
+const rdxProductsFilterSetSortOrderAsync = (sortOrder: EFilterSortOrder): IReduxProductsDispatch => async (dispatch: Dispatch<IReduxProductsActions>) => {
+  dispatch(productsFilterSetSortOrder(sortOrder));
+};
+// Products Filter Set SortOrder: end
 
 // Products Filter Set Type: begin
 const productsFilterSetType = (type: string): IReduxProductsActions => ({
@@ -118,6 +130,7 @@ export {
   rdxProductsActionTypes,
   rdxProductsSelector,
   rdxProductsFilterSetPageAsync,
+  rdxProductsFilterSetSortOrderAsync,
   rdxProductsFilterSetTypeAsync,
   rdxProductsTypesGetDataAsync,
   rdcProductsItemsGetDataAsync,

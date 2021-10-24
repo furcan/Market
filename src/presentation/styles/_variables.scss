@@ -18,6 +18,8 @@ $color_blue: #1ea4ce;
 $color_blue_dark: #147594;
 $color_blue_light: #f2f0fd;
 $color_gray_maintitle: #6f6f6f;
+$color_gray_filtertitle: #697488;
+$color_gray_filterradio: #dfdee2;
 $color_gray_pagination: #697488;
 $color_purple: #5d3ebc;
 $color_purple_light: #f3f0fe;
@@ -25,6 +27,7 @@ $color_theme_green: #32c682;
 $color_theme_red: #ff5549;
 $color_theme_yellow: #eebf31;
 $color_theme_blue: #26c0d3;
+$color_scrollbar_filter: #e0e0e0;
 
 // transitions
 $transition_base: all 0.25s ease-in-out;
@@ -52,6 +55,9 @@ $font_weight_medium: 500;
 $font_weight_semibold: 600;
 $font_weight_bold: 700;
 $font_weight_extrabold: 800;
+
+// box shadows
+$boxshadow_base: 0 0.25rem 1.5rem rgba($color_purple, 0.04);
 
 // constants
 $header_height_mobile: 4rem;

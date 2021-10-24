@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { constants } from 'application/constants';
 import { IApiProductType } from 'application/api';
 import { rdxProductsSelector, rdxProductsTypesGetDataAsync, rdxProductsFilterSetTypeAsync } from 'application/redux/products';
 
-import styles from 'presentation/components/filters/types/Types.module.scss';
-import { constants } from 'application/constants';
+import styles from 'presentation/components/item-types/ItemTypes.module.scss';
 
-function Types(): JSX.Element {
+function ItemTypes(): JSX.Element {
   const dispatch = useDispatch();
   const {
     loadingProductItems,
@@ -29,14 +29,14 @@ function Types(): JSX.Element {
   };
 
   return (
-    <div className={styles.types}>
+    <div className={styles.itemtypes}>
       {
         loadingProductTypes &&
-        placeholder.map((_, index) => <span key={index} className={[styles.types__button, styles['types__button--placeholder'] || ''].join(' ')}></span>)
+        placeholder.map((_, index) => <span key={index} className={[styles.itemtypes__button, styles['itemtypes__button--placeholder'] || ''].join(' ')}></span>)
       }
       {
         failureProductTypes &&
-        <p className={styles.types__failure}>{constants.text.common.failure}</p>
+        <p className={styles.itemtypes__failure}>{constants.text.common.failure}</p>
       }
       {
         (!loadingProductTypes && !failureProductTypes && dataProductTypes.length > 0) &&
@@ -45,9 +45,9 @@ function Types(): JSX.Element {
             key={index}
             onClick={() => changeFilterTypeOnClickHandler(type.queryString)}
             className={[
-              styles.types__button,
-              (filterType === type.queryString ? (styles['types__button--selected'] || '') : ''),
-              (loadingProductItems ? (styles['types__button--disabled'] || '') : ''),
+              styles.itemtypes__button,
+              (loadingProductItems ? (styles['itemtypes__button--disabled'] || '') : ''),
+              (filterType === type.queryString ? (styles['itemtypes__button--selected'] || '') : ''),
             ].join(' ')}
           >
             <span>{type.name}</span>
@@ -58,4 +58,4 @@ function Types(): JSX.Element {
   );
 }
 
-export default Types;
+export default ItemTypes;

@@ -13,7 +13,7 @@ const productsReducer = (state = rdxProductsInitialState, action: IReduxProducts
     // Product Filter Page: end
 
     // Product Filter SortOrder: begin
-    case rdxProductsActionTypes.PRODUCTS_FILTER_SET_SORTORDER: // TODO: actions will be added
+    case rdxProductsActionTypes.PRODUCTS_FILTER_SET_SORTORDER:
       return {
         ...state,
         filterSortOrder: action.actionFilterSortOrder || rdxProductsInitialState.filterSortOrder,

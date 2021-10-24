@@ -13,6 +13,7 @@ export {
   rdxProductsActionTypes,
   rdxProductsSelector,
   rdxProductsFilterSetPageAsync,
+  rdxProductsFilterSetSortOrderAsync,
   rdxProductsFilterSetTypeAsync,
   rdxProductsTypesGetDataAsync,
   rdcProductsItemsGetDataAsync,

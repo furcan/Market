@@ -18,15 +18,25 @@ $basket_width: 18.5rem;
     visibility: hidden;
     position: absolute;
     left: -1rem;
-    top: -2rem;
+    top: -1rem;
     width: 100%;
     max-width: $filters_width;
-    background: palegoldenrod;
-    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1rem;
+    background: $color_light;
+    box-shadow: $boxshadow_base;
 
     &--visible {
       opacity: 1;
       visibility: visible;
+    }
+
+    @include media_up($breakpoint_tablet) {
+      top: -2.5rem;
     }
 
     @include media_up($breakpoint_minibook) {
@@ -35,11 +45,19 @@ $basket_width: 18.5rem;
       position: relative;
       left: 0;
       top: 0;
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
     }
   }
 
   &__content {
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
 
     @include media_up($breakpoint_tablet) {
       padding: 0 1rem;

@@ -7,9 +7,9 @@ import { rdxProductsSelector, rdxProductsFilterSetPageAsync } from 'application/
 import IconArrowLeft from 'presentation/components/icons/IconArrowLeft';
 import IconArrowRight from 'presentation/components/icons/IconArrowRight';
 
-import styles from 'presentation/components/pagination/Pagination.module.scss';
+import styles from 'presentation/components/items-pagination/ItemsPagination.module.scss';
 
-function Pagination(): JSX.Element {
+function ItemsPagination(): JSX.Element {
   const dispatch = useDispatch();
   const {
     filterPage,
@@ -19,7 +19,7 @@ function Pagination(): JSX.Element {
   } = useSelector(rdxProductsSelector);
 
   if (dataProductItemsTotalCount < 1 && loadingProductItems) {
-    return <div className={[styles.pagination, (styles['pagination--placeholder'] || '')].join(' ')}></div>;
+    return <div className={[styles.itemspagination, (styles['itemspagination--placeholder'] || '')].join(' ')}></div>;
   }
 
   if (dataProductItemsTotalCount < 1 || failureProductsItems) {
@@ -33,17 +33,17 @@ function Pagination(): JSX.Element {
   const paginationItems = generatorPaginationItems(filterPage, dataProductItemsTotalCount);
   return (
     <div className={[
-      styles.pagination,
-      (loadingProductItems ? (styles['pagination--loading'] || '') : ''),
+      styles.itemspagination,
+      (loadingProductItems ? (styles['itemspagination--loading'] || '') : ''),
     ].join(' ')}>
       {
         <button
           type="button"
           disabled={filterPage === paginationItems.items[0]}
           onClick={filterPage === paginationItems.items[0] ? undefined : () => changeFilterPageOnClickHandler(filterPage - 1)}
-          className={styles.pagination__prev}
+          className={styles.itemspagination__prev}
         >
-          <IconArrowLeft className={styles.pagination__prev__icon} />
+          <IconArrowLeft className={styles.itemspagination__prev__icon} />
           <span>{constants.text.products.buttonPrev}</span>
         </button>
       }
@@ -54,17 +54,17 @@ function Pagination(): JSX.Element {
               <button
                 key={index}
                 type="button"
-                onClick={filterPage !== item ? () => changeFilterPageOnClickHandler(item) : undefined}
+                onClick={filterPage === item ? undefined : () => changeFilterPageOnClickHandler(item)}
                 className={[
-                  styles.pagination__button,
-                  (filterPage === item ? (styles['pagination__button--selected'] || '') : ''),
+                  styles.itemspagination__button,
+                  (filterPage === item ? (styles['itemspagination__button--selected'] || '') : ''),
                 ].join(' ')}
               >
                 <span>{item}</span>
               </button>
             );
           }
-          return <span key={index} className={styles.pagination__seperator}>{item}</span>;
+          return <span key={index} className={styles.itemspagination__seperator}>{item}</span>;
         })
       }
       {
@@ -72,14 +72,14 @@ function Pagination(): JSX.Element {
           type="button"
           disabled={filterPage === paginationItems.items.pop()}
           onClick={filterPage === paginationItems.items.pop() ? undefined : () => changeFilterPageOnClickHandler(filterPage + 1)}
-          className={styles.pagination__next}
+          className={styles.itemspagination__next}
         >
           <span>{constants.text.products.buttonNext}</span>
-          <IconArrowRight className={styles.pagination__next__icon} />
+          <IconArrowRight className={styles.itemspagination__next__icon} />
         </button>
       }
     </div>
   );
 }
 
-export default Pagination;
+export default ItemsPagination;
