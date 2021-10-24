@@ -5,7 +5,7 @@ import { FiAlertTriangle as IconFailure } from 'react-icons/fi';
 import { constants } from 'application/constants';
 import { convertPriceToLocaleString } from 'application/helpers';
 import { IApiProductItem } from 'application/api';
-import { rdxProductsSelector, rdcProductsItemsGetDataAsync } from 'application/redux/products';
+import { rdxProductsSelector, rdxProductsItemsGetDataAsync } from 'application/redux/products';
 
 import styles from 'presentation/components/items/Items.module.scss';
 
@@ -23,7 +23,7 @@ function Products(): JSX.Element {
 
   useEffect(() => {
     if (filterType) {
-      dispatch(rdcProductsItemsGetDataAsync(
+      dispatch(rdxProductsItemsGetDataAsync(
         [filterType, filterSortOrder], // TODO, FILTERS WILL BE EXTENDED
         filterPage,
       ));

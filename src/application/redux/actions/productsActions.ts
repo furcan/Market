@@ -105,7 +105,7 @@ const productsItemsSetData = (data: IApiProductItems): IReduxProductsActions => 
   actionDataProductItems: data,
 });
 
-const rdcProductsItemsGetDataAsync = (filters: string[], page: number): IReduxProductsDispatch => async (dispatch: Dispatch<IReduxProductsActions>) => {
+const rdxProductsItemsGetDataAsync = (filters: string[], page: number): IReduxProductsDispatch => async (dispatch: Dispatch<IReduxProductsActions>) => {
   try {
     dispatch(productsItemsGetDataLoading());
 
@@ -133,5 +133,5 @@ export {
   rdxProductsFilterSetSortOrderAsync,
   rdxProductsFilterSetTypeAsync,
   rdxProductsTypesGetDataAsync,
-  rdcProductsItemsGetDataAsync,
+  rdxProductsItemsGetDataAsync,
 };
