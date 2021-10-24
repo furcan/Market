@@ -1,5 +1,8 @@
 @import "presentation/styles/variables";
 
+$filters_width: 18.5rem;
+$basket_width: 18.5rem;
+
 .products {
   position: relative;
   width: 100%;
@@ -17,7 +20,7 @@
     left: -1rem;
     top: -2rem;
     width: 100%;
-    max-width: 18.5rem;
+    max-width: $filters_width;
     background: palegoldenrod;
     padding: 2rem;
 
@@ -26,7 +29,7 @@
       visibility: visible;
     }
 
-    @include media_up($breakpoint_tablet) {
+    @include media_up($breakpoint_minibook) {
       opacity: 1;
       visibility: visible;
       position: relative;
@@ -36,11 +39,18 @@
   }
 
   &__content {
-    max-width: 100%;
-    flex-grow: 1;
+    width: 100%;
 
     @include media_up($breakpoint_tablet) {
       padding: 0 1rem;
+    }
+
+    @include media_up($breakpoint_minibook) {
+      width: calc(100% - $filters_width);
+    }
+
+    @include media_up($breakpoint_laptop) {
+      width: calc(100% - $filters_width - $basket_width);
     }
 
     &__title {
@@ -62,7 +72,7 @@
     top: -1rem;
     right: -1rem;
     width: 100%;
-    max-width: 18.5rem;
+    max-width: $basket_width;
     background: palevioletred;
     padding: 2rem;
 

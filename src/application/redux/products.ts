@@ -12,6 +12,7 @@ export {
 export {
   rdxProductsActionTypes,
   rdxProductsSelector,
-  rdxProductsGetTypesAsync,
-  rdxProductsChangeFilterTypeAsync,
+  rdxProductsTypesGetDataAsync,
+  rdxProductsFilterSetTypeAsync,
+  rdcProductsItemsGetDataAsync,
 } from 'application/redux/actions/productsActions';

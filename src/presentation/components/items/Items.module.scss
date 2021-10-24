@@ -1,0 +1,119 @@
+@import "presentation/styles/variables";
+
+.items {
+  width: 100%;
+  padding: 1.25rem;
+  background: $color_white;
+  border-radius: 0.125rem;
+  box-shadow: 0 0.25rem 1.5rem rgba($color_purple, 0.04);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  &__single {
+    position: relative;
+    align-self: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: calc(50% - 0.625rem);
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.375rem;
+
+    @include media_up($breakpoint_mobile) {
+      width: calc(25% - 1.125rem);
+    }
+
+    &:nth-child(2n) {
+      margin-left: 1.25rem;
+
+      @include media_up($breakpoint_mobile) {
+        margin-left: 1.5rem;
+      }
+    }
+
+    &:nth-child(4n - 1) {
+      @include media_up($breakpoint_mobile) {
+        margin-left: 1.5rem;
+      }
+    }
+
+    &:nth-last-child(1),
+    &:nth-last-child(2) {
+      margin-bottom: 0;
+    }
+
+    &:nth-last-child(3),
+    &:nth-last-child(4) {
+      @include media_up($breakpoint_mobile) {
+        margin-bottom: 0;
+      }
+    }
+
+    &__media {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 1rem;
+      margin: 0 0 0.5rem;
+      background: $color_light_secondary;
+      border: 0.0735rem solid $color_purple_light;
+      border-radius: 0.75rem;
+
+      &__image {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    &__price {
+      width: 100%;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      font-weight: $font_weight_bold;
+      color: $color_blue;
+      margin: 0 0 0.25rem;
+
+      &__currency {
+        font-weight: $font_weight_regular;
+        margin-right: 0.3rem;
+      }
+    }
+
+    &__title {
+      width: 100%;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      font-weight: $font_weight_semibold;
+      color: $color_dark_producttitle;
+      margin: 0 0 0.5rem;
+    }
+
+    &__button {
+      transition: $transition_background;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1.375rem;
+      color: $color_white;
+      background: $color_blue;
+      border-radius: 0.125rem;
+      font-size: 0.75rem;
+      font-weight: $font_weight_semibold;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: $color_blue_dark;
+      }
+    }
+  }
+}

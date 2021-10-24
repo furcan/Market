@@ -4,6 +4,7 @@ import { constants } from 'application/constants';
 import { rdxMarketSelector } from 'application/redux/market';
 
 import Types from 'presentation/components/filters/types/Types';
+import Items from 'presentation/components/items/Items';
 
 import styles from 'presentation/screens/products/Products.module.scss';
 
@@ -21,10 +22,7 @@ function Products(): JSX.Element {
       <div className={styles.products__content}>
         <h2 className={styles.products__content__title}>{constants.text.products.mainTitle}</h2>
         <Types />
-        <h1>TODO</h1>
-        <h1>TODO</h1>
-        <h1>TODO</h1>
-        <h1>TODO</h1>
+        <Items />
       </div>
       <div className={[
         styles.products__basket,

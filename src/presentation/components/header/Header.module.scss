@@ -50,6 +50,7 @@ $basket_width: 8.0625rem;
 
     @include media_up($breakpoint_tablet) {
       width: $basket_width;
+      align-items: flex-start;
     }
   }
 

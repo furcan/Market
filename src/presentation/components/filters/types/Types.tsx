@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { IApiProductTypes } from 'application/api';
-import { rdxProductsSelector, rdxProductsGetTypesAsync, rdxProductsChangeFilterTypeAsync } from 'application/redux/products';
+import { IApiProductType } from 'application/api';
+import { rdxProductsSelector, rdxProductsTypesGetDataAsync, rdxProductsFilterSetTypeAsync } from 'application/redux/products';
 
 import styles from 'presentation/components/filters/types/Types.module.scss';
 import { constants } from 'application/constants';
@@ -19,12 +19,12 @@ function Types(): JSX.Element {
 
   useEffect(() => {
     if (loadingProductTypes) {
-      dispatch(rdxProductsGetTypesAsync());
+      dispatch(rdxProductsTypesGetDataAsync());
     }
   }, [loadingProductTypes, dispatch]);
 
   const changeFilterTypeOnClickHandler = (filterType: string): void => {
-    dispatch(rdxProductsChangeFilterTypeAsync(filterType));
+    dispatch(rdxProductsFilterSetTypeAsync(filterType));
   };
 
   return (
@@ -39,7 +39,7 @@ function Types(): JSX.Element {
       }
       {
         dataProductTypes.length > 0 &&
-        dataProductTypes.map((type: IApiProductTypes, index: number) => (
+        dataProductTypes.map((type: IApiProductType, index: number) => (
           <button
             key={index}
             onClick={() => changeFilterTypeOnClickHandler(type.queryString)}

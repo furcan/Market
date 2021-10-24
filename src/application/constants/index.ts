@@ -7,6 +7,7 @@ interface IConstants {
     pathTypes: string;
     pathBrands: string;
     pathTags: string;
+    productsLimit: number;
   };
   app: {
     url: string;
@@ -21,6 +22,7 @@ interface IConstants {
     };
     products: {
       mainTitle: string;
+      buttonAdd: string;
     };
     footer: {
       privacy: string;
@@ -35,6 +37,7 @@ const constants: IConstants = {
     pathTypes: '/types',
     pathBrands: '/brands',
     pathTags: '/tags',
+    productsLimit: 16,
   },
   app: {
     url: packageJSON?.homepage,
@@ -49,6 +52,7 @@ const constants: IConstants = {
     },
     products: {
       mainTitle: 'Products',
+      buttonAdd: 'Add',
     },
     footer: {
       privacy: 'Privacy Policy',

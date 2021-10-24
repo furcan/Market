@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
 
-  @include media_up($breakpoint_tablet) {
+  @include media_up($breakpoint_minibook) {
     display: none;
   }
 

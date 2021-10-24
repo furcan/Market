@@ -1,73 +1,109 @@
 import { Dispatch } from 'redux';
 
-import { Api, IApiProductTypes } from 'application/api';
+import { Api, IApiProductItems, IApiProductType } from 'application/api';
 import { addSomeDelayAsync } from 'application/helpers';
 import { IReduxProductsActionTypes, IReduxProductsActions, IReduxProductsDispatch, IReduxProductsState } from 'application/redux/products';
 
 const rdxProductsActionTypes: IReduxProductsActionTypes = {
-  PRODUCTS_GET_TYPES_LOADING: 'PRODUCTS_GET_TYPES_LOADING',
-  PRODUCTS_GET_TYPES_FAILURE: 'PRODUCTS_GET_TYPES_FAILURE',
-  PRODUCTS_GET_TYPES_DATA: 'PRODUCTS_GET_TYPES_DATA',
-  PRODUCTS_FILTER_TYPE: 'PRODUCTS_FILTER_TYPE',
-  PRODUCTS_FILTER_SORTORDER: 'PRODUCTS_FILTER_SORTORDER',
+  PRODUCTS_FILTER_SET_TYPE: 'PRODUCTS_FILTER_SET_TYPE',
+  PRODUCTS_FILTER_SET_SORTORDER: 'PRODUCTS_FILTER_SET_SORTORDER',
+  PRODUCTS_TYPES_GET_DATA_LOADING: 'PRODUCTS_TYPES_GET_DATA_LOADING',
+  PRODUCTS_TYPES_GET_DATA_FAILURE: 'PRODUCTS_TYPES_GET_DATA_FAILURE',
+  PRODUCTS_TYPES_SET_DATA: 'PRODUCTS_TYPES_SET_DATA',
+  PRODUCTS_ITEMS_GET_DATA_LOADING: 'PRODUCTS_ITEMS_GET_DATA_LOADING',
+  PRODUCTS_ITEMS_GET_DATA_FAILURE: 'PRODUCTS_ITEMS_GET_DATA_FAILURE',
+  PRODUCTS_ITEMS_SET_DATA: 'PRODUCTS_ITEMS_SET_DATA',
 };
 
 const rdxProductsSelector = (state: IReduxProductsState): IReduxProductsState => state.productsReducer;
 
 
-// Products Change Filter Type: begin
-const productsChangeFilterType = (type: string): IReduxProductsActions => ({
-  type: rdxProductsActionTypes.PRODUCTS_FILTER_TYPE,
+// Products Filter Set Type: begin
+const productsFilterSetType = (type: string): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_FILTER_SET_TYPE,
   actionFilterType: type,
 });
 
-const rdxProductsChangeFilterTypeAsync = (type: string): IReduxProductsDispatch => async (dispatch: Dispatch<IReduxProductsActions>) => {
-  dispatch(productsChangeFilterType(type));
+const rdxProductsFilterSetTypeAsync = (type: string): IReduxProductsDispatch => async (dispatch: Dispatch<IReduxProductsActions>) => {
+  dispatch(productsFilterSetType(type));
 };
-// Products Change Filter Type: end
+// Products Filter Set Type: end
 
-// Products Get & Set Types: begin
-const productsGetTypesLoading = (): IReduxProductsActions => ({
-  type: rdxProductsActionTypes.PRODUCTS_GET_TYPES_LOADING,
+// Products Types Get & Set Data: begin
+const productsTypesGetDataLoading = (): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_TYPES_GET_DATA_LOADING,
 });
 
-const productsGetTypesFailure = (): IReduxProductsActions => ({
-  type: rdxProductsActionTypes.PRODUCTS_GET_TYPES_FAILURE,
+const productsTypesGetDataFailure = (): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_TYPES_GET_DATA_FAILURE,
 });
 
-const productsGetTypesSetData = (dataProductTypes: IApiProductTypes[]): IReduxProductsActions => ({
-  type: rdxProductsActionTypes.PRODUCTS_GET_TYPES_DATA,
+const productsTypesSetData = (dataProductTypes: IApiProductType[]): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_TYPES_SET_DATA,
   actionDataProductTypes: dataProductTypes,
 });
 
-const rdxProductsGetTypesAsync = (): IReduxProductsDispatch => async (dispatch: Dispatch<IReduxProductsActions>) => {
+const rdxProductsTypesGetDataAsync = (): IReduxProductsDispatch => async (dispatch: Dispatch<IReduxProductsActions>) => {
   try {
-    dispatch(productsGetTypesLoading());
+    dispatch(productsTypesGetDataLoading());
 
     await addSomeDelayAsync();
 
-    const data: IApiProductTypes[] | null = await new Api().getProductTypes();
+    const data: IApiProductType[] | null = await new Api().getProductTypes();
 
     if (!data) {
       throw new Error();
     }
 
-    dispatch(productsGetTypesSetData(data));
+    dispatch(productsTypesSetData(data));
 
-    const theFirstType = data.find((type: IApiProductTypes) => type);
+    const theFirstType: IApiProductType | undefined = data.find((type: IApiProductType) => type);
     if (theFirstType) {
-      dispatch(productsChangeFilterType(theFirstType.queryString));
+      dispatch(productsFilterSetType(theFirstType.queryString));
     }
   } catch {
-    dispatch(productsGetTypesFailure());
+    dispatch(productsTypesGetDataFailure());
   }
 };
-// Products Get & Set Types: begin
+// Products Types Get & Set Data: end
 
+// Products Items Get & Set Data: begin
+const productsItemsGetDataLoading = (): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_ITEMS_GET_DATA_LOADING,
+});
+
+const productsItemsGetDataFailure = (): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_ITEMS_GET_DATA_FAILURE,
+});
+
+const productsItemsSetData = (data: IApiProductItems): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_ITEMS_SET_DATA,
+  actionDataProductItems: data,
+});
+
+const rdcProductsItemsGetDataAsync = (filters: string[], page: number): IReduxProductsDispatch => async (dispatch: Dispatch<IReduxProductsActions>) => {
+  try {
+    dispatch(productsItemsGetDataLoading());
+
+    await addSomeDelayAsync();
+
+    const data: IApiProductItems | null = await new Api().getProductsByFiltersAndPage(filters, page);
+
+    if (!data) {
+      throw new Error();
+    }
+
+    dispatch(productsItemsSetData(data));
+  } catch {
+    dispatch(productsItemsGetDataFailure());
+  }
+};
+// Products Items Get & Set Data: end
 
 export {
   rdxProductsActionTypes,
   rdxProductsSelector,
-  rdxProductsGetTypesAsync,
-  rdxProductsChangeFilterTypeAsync,
+  rdxProductsTypesGetDataAsync,
+  rdxProductsFilterSetTypeAsync,
+  rdcProductsItemsGetDataAsync,
 };

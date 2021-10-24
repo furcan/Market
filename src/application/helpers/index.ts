@@ -29,6 +29,19 @@ const convertPriceToLocaleString = (price: number): string => {
   });
 };
 
+interface IGeneratorApiUrlQueryStrings {
+  endpoint: string;
+  filters: string[];
+  page: number;
+}
+
+const generatorApiUrlQueryStrings = ({ endpoint, filters, page }: IGeneratorApiUrlQueryStrings): string => {
+  return `${endpoint}?${filters.join('&')}&_page=${page}&_limit=${constants.api.productsLimit}`;
+};
+
+export type {
+  IGeneratorApiUrlQueryStrings,
+};
 
 export {
   ErrorWithStatus,
@@ -36,4 +49,5 @@ export {
   devLoggerInfo,
   devLoggerError,
   convertPriceToLocaleString,
+  generatorApiUrlQueryStrings,
 };
