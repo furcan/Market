@@ -8,6 +8,8 @@ class ErrorWithStatus extends Error {
   status = 0;
 }
 
+const addSomeDelayAsync = (milliseconds?: number): Promise<void> => new Promise(resolve => setTimeout(() => { resolve(); }, milliseconds || 1000));
+
 const devLoggerInfo = (message?: string): void => {
   if (process.env.isDev) {
     console.log(`%c ${constants.app.name} `, 'padding:2px;border-radius:20px;color:#fff;background:#26c0d3', `\n ${message}`);
@@ -30,6 +32,7 @@ const convertPriceToLocaleString = (price: number): string => {
 
 export {
   ErrorWithStatus,
+  addSomeDelayAsync,
   devLoggerInfo,
   devLoggerError,
   convertPriceToLocaleString,

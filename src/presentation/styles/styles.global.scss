@@ -83,24 +83,32 @@ strong {
 }
 
 *::-webkit-scrollbar {
-  height: 0.25rem;
-  width: 0.25rem;
+  @include media_up($breakpoint_tablet) {
+    height: 0.3rem;
+    width: 0.3rem;
+  }
 }
 
 *::-webkit-scrollbar-track {
-  background: rgba($color_black, 0.04);
+  @include media_up($breakpoint_tablet) {
+    background: rgba($color_black, 0.04);
+  }
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba($color_black, 0.08);
-  cursor: pointer;
+  @include media_up($breakpoint_tablet) {
+    background: rgba($color_black, 0.08);
+    cursor: pointer;
+  }
 }
 
 div,
 nav,
 ul {
-  scrollbar-color: rgba($color_black, 0.08) rgba($color_black, 0.04);
-  scrollbar-width: thin;
+  @include media_up($breakpoint_tablet) {
+    scrollbar-color: rgba($color_black, 0.08) rgba($color_black, 0.04);
+    scrollbar-width: thin;
+  }
 }
 
 *::selection {

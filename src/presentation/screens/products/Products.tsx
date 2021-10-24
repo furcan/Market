@@ -1,6 +1,9 @@
 import { useSelector } from 'react-redux';
 
+import { constants } from 'application/constants';
 import { rdxMarketSelector } from 'application/redux/market';
+
+import Types from 'presentation/components/filters/types/Types';
 
 import styles from 'presentation/screens/products/Products.module.scss';
 
@@ -16,12 +19,12 @@ function Products(): JSX.Element {
         <h1>Filters</h1>
       </div>
       <div className={styles.products__content}>
-        <h1>PRODUCTS</h1>
-
-        <button type="button">
-          <span>TODO</span>
-        </button>
-
+        <h2 className={styles.products__content__title}>{constants.text.products.mainTitle}</h2>
+        <Types />
+        <h1>TODO</h1>
+        <h1>TODO</h1>
+        <h1>TODO</h1>
+        <h1>TODO</h1>
       </div>
       <div className={[
         styles.products__basket,

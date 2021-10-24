@@ -36,9 +36,21 @@
   }
 
   &__content {
+    max-width: 100%;
     flex-grow: 1;
-    background: palegreen;
-    padding: 2rem;
+
+    @include media_up($breakpoint_tablet) {
+      padding: 0 1rem;
+    }
+
+    &__title {
+      width: 100%;
+      font-size: 1.25rem;
+      line-height: 1.625rem;
+      font-weight: $font_weight_regular;
+      color: $color_gray_maintitle;
+      margin: 0 0 1rem;
+    }
   }
 
   &__basket {

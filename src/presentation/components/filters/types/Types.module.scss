@@ -1,0 +1,79 @@
+@import "presentation/styles/variables";
+
+.types {
+  width: 100%;
+  min-height: 1.875rem;
+  margin: 0 0 1rem;
+  display: block;
+  white-space: nowrap;
+  overflow: auto hidden;
+  padding: 0 0 0.5rem;
+
+  @include media_up($breakpoint_tablet) {
+    padding: 0;
+  }
+
+  &__button {
+    transition: $transition_background, $transition_color;
+    min-width: 3.75rem;
+    height: 1.875rem;
+    padding: 0 1rem;
+    text-align: center;
+    font-size: 0.8125rem;
+    line-height: 1.125rem;
+    font-weight: $font_weight_semibold;
+    color: $color_blue;
+    background: $color_blue_light;
+    border-radius: 0.125rem;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    &:not(:last-child) {
+      margin: 0 0.5rem 0 0;
+    }
+
+    &--selected {
+      color: $color_white;
+      background: $color_blue;
+    }
+
+    &:not(&--placeholder):hover {
+      color: $color_white;
+      background: $color_blue_dark;
+    }
+
+    &--placeholder {
+      pointer-events: none;
+      background: $color_blue_light;
+      filter: brightness(0.99);
+      animation: animation_button_loading 1s ease-in-out 0s infinite;
+
+      @keyframes animation_button_loading {
+        0% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0.25;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__failure {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 1.875rem;
+    font-size: 0.75rem;
+    font-weight: $font_weight_medium;
+    color: $color_theme_red;
+  }
+}

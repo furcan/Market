@@ -1,46 +1,39 @@
 import { Dispatch } from 'redux';
 
 import { EFilterSortOrder } from 'application/enumerations/filter-sort-order';
-
-interface IProductTypes {
-  id: string;
-  name: string;
-  queryString: string;
-}
-
-interface IProductBrands {
-  id: string;
-  name: string;
-  queryString: string;
-}
-
-interface IProductTags {
-  id: string;
-  name: string;
-  queryString: string;
-}
+import { IApiProductTypes, IApiProductBrands, IApiProductTags } from 'application/api';
 
 interface IReduxProductsState {
   filterSortOrder: EFilterSortOrder;
   filterType: string | null;
   filterBrands: string | null;
   filterTags: string | null;
-  dataProductTypes: IProductTypes[];
-  dataProductBrands: IProductBrands[];
-  dataProductTags: IProductTags[];
+  loadingProductTypes: boolean;
+  loadingProductBrands: boolean;
+  loadingProductTags: boolean;
+  failureProductTypes: boolean;
+  failureProductBrands: boolean;
+  failureProductTags: boolean;
+  dataProductTypes: IApiProductTypes[];
+  dataProductBrands: IApiProductBrands[];
+  dataProductTags: IApiProductTags[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   productsReducer?: any;
 }
 
 interface IReduxProductsActionTypes {
-  PRODUCTS_TYPE: string;
+  PRODUCTS_GET_TYPES_LOADING: string;
+  PRODUCTS_GET_TYPES_FAILURE: string;
+  PRODUCTS_GET_TYPES_DATA: string;
+  PRODUCTS_FILTER_TYPE: string;
   PRODUCTS_FILTER_SORTORDER: string;
 }
 
 interface IReduxProductsActions {
   type: string;
-  actionFilterType?: string,
-  actionFilterSortOrder?: EFilterSortOrder,
+  actionFilterSortOrder?: EFilterSortOrder;
+  actionFilterType?: string;
+  actionDataProductTypes?: IApiProductTypes[];
 }
 
 interface IReduxProductsDispatch {

@@ -14,8 +14,8 @@ interface IReduxMarketActionTypes {
 
 interface IReduxMarketActions {
   type: string;
-  actionFiltersVisibility?: boolean,
-  actionBasketVisibility?: boolean,
+  actionFiltersVisibility?: boolean;
+  actionBasketVisibility?: boolean;
 }
 
 interface IReduxMarketDispatch {
