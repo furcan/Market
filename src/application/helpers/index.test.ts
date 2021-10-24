@@ -41,9 +41,9 @@ describe('Helper functions should be work as expected.', () => {
     });
 
     const example2TotalPages = 20;
-    const example2 = generatorPaginationItems(8, (appPageLimit * example2TotalPages), '***');
+    const example2 = generatorPaginationItems(9, (appPageLimit * example2TotalPages), '***');
     expect(example2).toStrictEqual({
-      items: [4, 5, 6, 7, 8, '***', 17, 18, 19, 20],
+      items: [6, 7, 8, 9, '***', 17, 18, 19, 20],
       total: example2TotalPages,
     });
 

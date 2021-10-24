@@ -69,7 +69,7 @@ const generatorPaginationItems = (currentPage: number, totalPage: number, sepera
 
   if (first4.length < 4) {
     let start = 1;
-    while (start < 6) {
+    while (start < 5) {
       if (!first4.includes(start)) {
         first4.push(start);
         start++;
@@ -79,6 +79,7 @@ const generatorPaginationItems = (currentPage: number, totalPage: number, sepera
 
   if (!first4.includes(currentPage) && !last4.includes(currentPage)) {
     first4.push(currentPage);
+    first4.splice(0, 1);
   }
 
   if (last4.includes(currentPage)) {
