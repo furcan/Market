@@ -25,26 +25,26 @@ function FilterTypeRadio({
 
   return (
     <div className={[
-      styles.sortorder,
-      (loadingProductItems ? (styles['sortorder--loading'] || '') : ''),
+      styles.ft_radio,
+      (loadingProductItems ? (styles['ft_radio--loading'] || '') : ''),
     ].join(' ')}>
-      <h3 className={styles.sortorder__title}>{title}</h3>
-      <div className={styles.sortorder__content}>
-        <ul className={styles.sortorder__list}>
+      <h3 className={styles.ft_radio__title}>{title}</h3>
+      <div className={styles.ft_radio__content}>
+        <ul className={styles.ft_radio__list}>
           {
             items.map((item: string, index: number) => (
-              <li key={index} className={styles.sortorder__list__item}>
+              <li key={index} className={styles.ft_radio__list__item}>
                 <button
                   type="button"
                   onClick={activeItem === item ? undefined : () => onClickDispatcher(item)}
                   className={[
-                    styles.sortorder__list__item__button,
-                    (activeItem === item ? (styles['sortorder__list__item__button--selected'] || '') : ''),
+                    styles.ft_radio__list__item__button,
+                    (activeItem === item ? (styles['ft_radio__list__item__button--selected'] || '') : ''),
                   ].join(' ')}
                 >
-                  {activeItem === item && <IconCheck className={styles.sortorder__list__item__button__icon} />}
+                  {activeItem === item && <IconCheck className={styles.ft_radio__list__item__button__icon} />}
                 </button>
-                <span className={styles.sortorder__list__item__text}>{extractorItemText(item)}</span>
+                <span className={styles.ft_radio__list__item__text}>{extractorItemText(item)}</span>
               </li>
             ))
           }
