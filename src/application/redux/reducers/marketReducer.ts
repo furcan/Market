@@ -3,16 +3,16 @@ import { IReduxMarketActions, IReduxMarketState, rdxMarketInitialState, rdxMarke
 /* eslint-disable indent */
 const marketReducer = (state = rdxMarketInitialState, action: IReduxMarketActions): IReduxMarketState => {
   switch (action.type) {
-    case rdxMarketActionTypes.MARKET_FILTERS_VISIBILITY:
+    case rdxMarketActionTypes.MARKET_VISIBILITY_FILTERS:
       return {
         ...state,
-        isFiltersVisible: action.actionFiltersVisibility === true,
+        marketIsFilterVisible: action.actionVisibilityFilters === true,
       };
 
-    case rdxMarketActionTypes.MARKET_BASKET_VISIBILITY:
+    case rdxMarketActionTypes.MARKET_VISIBILITY_BASKET:
       return {
         ...state,
-        isBasketVisible: action.actionBasketVisibility === true,
+        marketIsBasketVisible: action.actionVisibilityBasket === true,
       };
 
     default:

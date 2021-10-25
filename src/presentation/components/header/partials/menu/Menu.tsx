@@ -7,10 +7,10 @@ import styles from 'presentation/components/header/partials/menu/Menu.module.scs
 
 function Menu(): JSX.Element {
   const dispatch = useDispatch();
-  const { isFiltersVisible } = useSelector(rdxMarketSelector);
+  const { marketIsFilterVisible } = useSelector(rdxMarketSelector);
 
   const toggleFilterOnClickHandler = (): void => {
-    dispatch(rdxMarketFiltersVisibilityAsync(!isFiltersVisible));
+    dispatch(rdxMarketFiltersVisibilityAsync(!marketIsFilterVisible));
   };
   return (
     <button
@@ -18,8 +18,8 @@ function Menu(): JSX.Element {
       onClick={toggleFilterOnClickHandler}
       className={styles.menu}
     >
-      {!isFiltersVisible && <IconMenu className={styles.menu__icon} />}
-      {isFiltersVisible && <IconClose className={styles.menu__icon} />}
+      {!marketIsFilterVisible && <IconMenu className={styles.menu__icon} />}
+      {marketIsFilterVisible && <IconClose className={styles.menu__icon} />}
     </button>
   );
 }

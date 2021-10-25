@@ -24,7 +24,7 @@ import styles from 'presentation/screens/products/Products.module.scss';
 
 function Products(): JSX.Element {
   const dispatch = useDispatch();
-  const { isFiltersVisible, isBasketVisible } = useSelector(rdxMarketSelector);
+  const { marketIsFilterVisible, marketIsBasketVisible } = useSelector(rdxMarketSelector);
   const {
     loadingProductBrands,
     failureProductBrands,
@@ -85,12 +85,12 @@ function Products(): JSX.Element {
         onClick={closeOverlayOnClickHandler}
         className={[
           styles.products__overlay,
-          ((isFiltersVisible || isBasketVisible) ? (styles['products__overlay--visible'] || '') : ''),
+          ((marketIsFilterVisible || marketIsBasketVisible) ? (styles['products__overlay--visible'] || '') : ''),
         ].join(' ')}
       ></button>
       <div className={[
         styles.products__filters,
-        (isFiltersVisible ? (styles['products__filters--visible'] || '') : ''),
+        (marketIsFilterVisible ? (styles['products__filters--visible'] || '') : ''),
       ].join(' ')}>
         <FilterSorting
           title={constants.text.filters.titleSorting}
@@ -132,7 +132,7 @@ function Products(): JSX.Element {
       </div>
       <div className={[
         styles.products__basket,
-        (isBasketVisible ? (styles['products__basket--visible'] || '') : ''),
+        (marketIsBasketVisible ? (styles['products__basket--visible'] || '') : ''),
       ].join(' ')}>
         <h1>Basket</h1>
       </div>

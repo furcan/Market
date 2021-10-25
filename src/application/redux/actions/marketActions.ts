@@ -3,16 +3,16 @@ import { Dispatch } from 'redux';
 import { IReduxMarketActionTypes, IReduxMarketActions, IReduxMarketDispatch, IReduxMarketState } from 'application/redux/market';
 
 const rdxMarketActionTypes: IReduxMarketActionTypes = {
-  MARKET_FILTERS_VISIBILITY: 'MARKET_FILTERS_VISIBILITY',
-  MARKET_BASKET_VISIBILITY: 'MARKET_BASKET_VISIBILITY',
+  MARKET_VISIBILITY_FILTERS: 'MARKET_VISIBILITY_FILTERS',
+  MARKET_VISIBILITY_BASKET: 'MARKET_VISIBILITY_BASKET',
 };
 
 const rdxMarketSelector = (state: IReduxMarketState): IReduxMarketState => state.marketReducer;
 
 // Market Filters Visibility: begin
 const marketFiltersVisibility = (visibility: boolean): IReduxMarketActions => ({
-  type: rdxMarketActionTypes.MARKET_FILTERS_VISIBILITY,
-  actionFiltersVisibility: visibility,
+  type: rdxMarketActionTypes.MARKET_VISIBILITY_FILTERS,
+  actionVisibilityFilters: visibility,
 });
 
 const rdxMarketFiltersVisibilityAsync = (visibility: boolean): IReduxMarketDispatch => async (dispatch: Dispatch<IReduxMarketActions>) => {
@@ -22,8 +22,8 @@ const rdxMarketFiltersVisibilityAsync = (visibility: boolean): IReduxMarketDispa
 
 // Market Basket Visibility: begin
 const marketBasketVisibility = (visibility: boolean): IReduxMarketActions => ({
-  type: rdxMarketActionTypes.MARKET_BASKET_VISIBILITY,
-  actionBasketVisibility: visibility,
+  type: rdxMarketActionTypes.MARKET_VISIBILITY_BASKET,
+  actionVisibilityBasket: visibility,
 });
 
 const rdxMarketBasketVisibilityAsync = (visibility: boolean): IReduxMarketDispatch => async (dispatch: Dispatch<IReduxMarketActions>) => {
