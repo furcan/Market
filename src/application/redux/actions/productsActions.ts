@@ -20,6 +20,7 @@ const rdxProductsActionTypes: IReduxProductsActionTypes = {
   PRODUCTS_BRANDS_SET_DATA: 'PRODUCTS_BRANDS_SET_DATA',
   PRODUCTS_ITEMS_GET_DATA_LOADING: 'PRODUCTS_ITEMS_GET_DATA_LOADING',
   PRODUCTS_ITEMS_GET_DATA_FAILURE: 'PRODUCTS_ITEMS_GET_DATA_FAILURE',
+  PRODUCTS_ITEMS_GET_DATA_NORESULTS: 'PRODUCTS_ITEMS_GET_DATA_NORESULTS',
   PRODUCTS_ITEMS_SET_DATA: 'PRODUCTS_ITEMS_SET_DATA',
 };
 
@@ -168,6 +169,10 @@ const productsItemsGetDataFailure = (): IReduxProductsActions => ({
   type: rdxProductsActionTypes.PRODUCTS_ITEMS_GET_DATA_FAILURE,
 });
 
+const productsItemsGetDataNoResults = (): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_ITEMS_GET_DATA_NORESULTS,
+});
+
 const productsItemsSetData = (data: IApiProductItems): IReduxProductsActions => ({
   type: rdxProductsActionTypes.PRODUCTS_ITEMS_SET_DATA,
   actionDataProductItems: data,
@@ -179,13 +184,17 @@ const rdxProductsItemsGetDataAsync = (filters: string[], page: number): IReduxPr
 
     await addSomeDelayAsync(500);
 
-    const data: IApiProductItems | null = await new Api().getProductsByFiltersAndPage(filters, page);
+    const items: IApiProductItems | null = await new Api().getProductsByFiltersAndPage(filters, page);
 
-    if (!data) {
+    if (!items) {
       throw new Error();
     }
 
-    dispatch(productsItemsSetData(data));
+    if (items.products.length > 0) {
+      dispatch(productsItemsSetData(items));
+    } else {
+      dispatch(productsItemsGetDataNoResults());
+    }
 
     actionWindowScrollToTop();
   } catch {

@@ -20,7 +20,8 @@ const rdxProductsInitialState: IReduxProductsState = {
   failureProductTags: false,
   dataProductTags: [],
   loadingProductItems: true,
-  failureProductsItems: false,
+  failureProductItems: false,
+  noResultsProductItems: false,
   dataProductItems: [],
   dataProductItemsTotalCount: 0,
 };

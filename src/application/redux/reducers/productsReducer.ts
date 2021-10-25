@@ -116,21 +116,32 @@ const productsReducer = (state = rdxProductsInitialState, action: IReduxProducts
       return {
         ...state,
         loadingProductItems: true,
-        failureProductsItems: false,
+        failureProductItems: false,
+        noResultsProductItems: false,
       };
 
     case rdxProductsActionTypes.PRODUCTS_ITEMS_GET_DATA_FAILURE:
       return {
         ...state,
         loadingProductItems: false,
-        failureProductsItems: true,
+        failureProductItems: true,
+        noResultsProductItems: false,
+      };
+
+    case rdxProductsActionTypes.PRODUCTS_ITEMS_GET_DATA_NORESULTS:
+      return {
+        ...state,
+        loadingProductItems: false,
+        failureProductItems: false,
+        noResultsProductItems: true,
       };
 
     case rdxProductsActionTypes.PRODUCTS_ITEMS_SET_DATA:
       return {
         ...state,
         loadingProductItems: false,
-        failureProductsItems: false,
+        failureProductItems: false,
+        noResultsProductItems: false,
         dataProductItems: action.actionDataProductItems?.products || rdxProductsInitialState.dataProductItems,
         dataProductItemsTotalCount: action.actionDataProductItems?.totalCount || rdxProductsInitialState.dataProductItemsTotalCount,
       };

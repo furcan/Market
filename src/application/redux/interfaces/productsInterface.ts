@@ -22,7 +22,8 @@ interface IReduxProductsState {
   failureProductTags: boolean;
   dataProductTags: IApiProductTag[];
   loadingProductItems: boolean;
-  failureProductsItems: boolean;
+  failureProductItems: boolean;
+  noResultsProductItems: boolean;
   dataProductItems: IApiProductItem[];
   dataProductItemsTotalCount: number;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -44,6 +45,7 @@ interface IReduxProductsActionTypes {
   PRODUCTS_BRANDS_SET_DATA: string;
   PRODUCTS_ITEMS_GET_DATA_LOADING: string;
   PRODUCTS_ITEMS_GET_DATA_FAILURE: string;
+  PRODUCTS_ITEMS_GET_DATA_NORESULTS: string;
   PRODUCTS_ITEMS_SET_DATA: string;
 }
 

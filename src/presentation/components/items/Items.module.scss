@@ -56,7 +56,8 @@
       }
     }
 
-    &--failure {
+    &--failure,
+    &--nodata {
       width: 100%;
       display: flex;
       flex-wrap: wrap;
@@ -69,13 +70,31 @@
         width: 2rem;
         height: 2rem;
         margin: 0 auto 0.5rem;
-        color: $color_theme_red;
       }
 
       &__message {
         font-size: 0.875rem;
         font-weight: $font_weight_semibold;
+      }
+    }
+
+    &--failure {
+      &__icon {
         color: $color_theme_red;
+      }
+
+      &__message {
+        color: $color_theme_red;
+      }
+    }
+
+    &--nodata {
+      &__icon {
+        color: $color_blue;
+      }
+
+      &__message {
+        color: $color_blue;
       }
     }
 

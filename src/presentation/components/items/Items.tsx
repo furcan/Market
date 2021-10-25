@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FiAlertTriangle as IconFailure } from 'react-icons/fi';
+import { FiInfo as IconNoData, FiAlertTriangle as IconFailure } from 'react-icons/fi';
 
 import { constants } from 'application/constants';
 import { convertPriceToLocaleString } from 'application/helpers';
@@ -17,7 +17,8 @@ function Products(): JSX.Element {
     filterType,
     filterBrands,
     loadingProductItems,
-    failureProductsItems,
+    failureProductItems,
+    noResultsProductItems,
     dataProductItems,
   } = useSelector(rdxProductsSelector);
   const placeholder: string[] = Array(constants.api.limitProductsItems).fill('');
@@ -52,14 +53,21 @@ function Products(): JSX.Element {
         placeholder.map((_, index) => <div key={index} className={[styles.items__single, styles['items__single--placeholder'] || ''].join(' ')}></div>)
       }
       {
-        failureProductsItems &&
+        (failureProductItems) &&
         <div className={[styles.items__single, styles['items__single--failure'] || ''].join(' ')}>
           <IconFailure className={styles['items__single--failure__icon'] || ''} />
           <p className={styles['items__single--failure__message'] || ''}>{constants.text.common.failure}</p>
         </div>
       }
       {
-        (!failureProductsItems && dataProductItems.length > 0) &&
+        (noResultsProductItems) &&
+        <div className={[styles.items__single, styles['items__single--nodata'] || ''].join(' ')}>
+          <IconNoData className={styles['items__single--nodata__icon'] || ''} />
+          <p className={styles['items__single--nodata__message'] || ''}>{constants.text.common.noData}</p>
+        </div>
+      }
+      {
+        (!failureProductItems && !noResultsProductItems) &&
         dataProductItems.map((item: IApiProductItem, index: number) => (
           <div
             key={index}

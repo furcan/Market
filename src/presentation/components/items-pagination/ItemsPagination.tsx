@@ -14,7 +14,7 @@ function ItemsPagination(): JSX.Element {
   const {
     filterPage,
     loadingProductItems,
-    failureProductsItems,
+    failureProductItems,
     dataProductItemsTotalCount,
   } = useSelector(rdxProductsSelector);
 
@@ -22,7 +22,7 @@ function ItemsPagination(): JSX.Element {
     return <div className={[styles.itemspagination, (styles['itemspagination--placeholder'] || '')].join(' ')}></div>;
   }
 
-  if (dataProductItemsTotalCount < 1 || failureProductsItems) {
+  if (dataProductItemsTotalCount < 1 || failureProductItems) {
     return <></>;
   }
 
