@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { rdxMarketSelector, rdxMarketBasketVisibilityAsync } from 'application/redux/market';
+import { rdxBasketSelector } from 'application/redux/basket';
 
 import { constants } from 'application/constants';
 import { convertPriceToLocaleString } from 'application/helpers';
@@ -11,13 +12,12 @@ import styles from 'presentation/components/header/partials/basket/Basket.module
 
 function Basket(): JSX.Element {
   const dispatch = useDispatch();
-  const { isBasketVisible } = useSelector(rdxMarketSelector);
+  const { marketIsBasketVisible } = useSelector(rdxMarketSelector);
+  const { basketGrandTotal } = useSelector(rdxBasketSelector);
 
   const toggleBasketOnClickHandler = (): void => {
-    dispatch(rdxMarketBasketVisibilityAsync(!isBasketVisible));
+    dispatch(rdxMarketBasketVisibilityAsync(!marketIsBasketVisible));
   };
-
-  const todoAmountFromRedux = 0.00;
 
   return (
     <button
@@ -28,7 +28,7 @@ function Basket(): JSX.Element {
       <IconBasket className={styles.basket__icon} />
       <span className={styles.basket__amount}>
         <span className={styles.basket__amount__currency}>{constants.app.currency}</span>
-        <span>{convertPriceToLocaleString(todoAmountFromRedux)}</span>
+        <span>{convertPriceToLocaleString(basketGrandTotal)}</span>
       </span>
     </button>
   );
