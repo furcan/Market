@@ -11,21 +11,42 @@ $basket_width: 18.5rem;
   align-items: flex-start;
   justify-content: space-between;
 
-  &__filters {
-    z-index: 2;
+  &__overlay {
+    z-index: 8;
     transition: $transition_visibility;
     opacity: 0;
     visibility: hidden;
-    position: absolute;
-    left: -1rem;
-    top: -1rem;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba($color_blue, 0.2);
+    backdrop-filter: blur(0.2rem);
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @include media_up($breakpoint_minibook) {
+      display: none;
+    }
+  }
+
+  &__filters {
+    z-index: 10;
+    transition: $transition_visibility;
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    left: 0;
+    top: $header_height_mobile;
     width: 100%;
     max-width: $filters_width;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    height: calc(100vh - $header_height_mobile);
+    display: block;
+    overflow: hidden auto;
     padding: 1rem;
     background: $color_light;
     box-shadow: $boxshadow_base;
@@ -36,10 +57,18 @@ $basket_width: 18.5rem;
     }
 
     @include media_up($breakpoint_tablet) {
-      top: -2.5rem;
+      top: $header_height_desktop;
+      height: calc(100vh - $header_height_desktop);
     }
 
     @include media_up($breakpoint_minibook) {
+      height: auto;
+      overflow: initial;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
       opacity: 1;
       visibility: visible;
       position: relative;
@@ -82,7 +111,7 @@ $basket_width: 18.5rem;
   }
 
   &__basket {
-    z-index: 1;
+    z-index: 9;
     transition: $transition_visibility;
     opacity: 0;
     visibility: hidden;

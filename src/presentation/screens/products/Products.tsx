@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { constants } from 'application/constants';
 import { EFilterSortOrder, getFilterSortOrderText } from 'application/enumerations/filter-sort-order';
-import { rdxMarketSelector, rdxMarketFiltersVisibilityAsync } from 'application/redux/market';
+import { rdxMarketSelector, rdxMarketFiltersVisibilityAsync, rdxMarketBasketVisibilityAsync } from 'application/redux/market';
 import {
   rdxProductsSelector,
   rdxProductsFilterSetSortOrderAsync,
@@ -71,8 +71,23 @@ function Products(): JSX.Element {
   };
   // Filter Tags OnClicks Handler: end
 
+  // Overlay (Mobile&Table) OnClick Handler: begin
+  const closeOverlayOnClickHandler = (): void => {
+    dispatch(rdxMarketFiltersVisibilityAsync(false));
+    dispatch(rdxMarketBasketVisibilityAsync(false));
+  };
+  // Overlay (Mobile&Table) OnClick Handler: end
+
   return (
     <div className={styles.products}>
+      <button
+        type="button"
+        onClick={closeOverlayOnClickHandler}
+        className={[
+          styles.products__overlay,
+          ((isFiltersVisible || isBasketVisible) ? (styles['products__overlay--visible'] || '') : ''),
+        ].join(' ')}
+      ></button>
       <div className={[
         styles.products__filters,
         (isFiltersVisible ? (styles['products__filters--visible'] || '') : ''),
