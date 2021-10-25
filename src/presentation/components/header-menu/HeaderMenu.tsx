@@ -3,9 +3,9 @@ import { FiMenu as IconMenu, FiX as IconClose } from 'react-icons/fi';
 
 import { rdxMarketSelector, rdxMarketFiltersVisibilityAsync } from 'application/redux/market';
 
-import styles from 'presentation/components/header/partials/menu/Menu.module.scss';
+import styles from 'presentation/components/header-menu/HeaderMenu.module.scss';
 
-function Menu(): JSX.Element {
+function HeaderMenu(): JSX.Element {
   const dispatch = useDispatch();
   const { marketIsFilterVisible } = useSelector(rdxMarketSelector);
 
@@ -16,12 +16,12 @@ function Menu(): JSX.Element {
     <button
       type="button"
       onClick={toggleFilterOnClickHandler}
-      className={styles.menu}
+      className={styles.headermenu}
     >
-      {!marketIsFilterVisible && <IconMenu className={styles.menu__icon} />}
-      {marketIsFilterVisible && <IconClose className={styles.menu__icon} />}
+      {!marketIsFilterVisible && <IconMenu className={styles.headermenu__icon} />}
+      {marketIsFilterVisible && <IconClose className={styles.headermenu__icon} />}
     </button>
   );
 }
 
-export default Menu;
+export default HeaderMenu;

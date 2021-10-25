@@ -8,9 +8,9 @@ import { convertPriceToLocaleString } from 'application/helpers';
 
 import IconBasket from 'presentation/components/icons/IconBasket';
 
-import styles from 'presentation/components/header/partials/basket/Basket.module.scss';
+import styles from 'presentation/components/header-basket/HeaderBasket.module.scss';
 
-function Basket(): JSX.Element {
+function HeaderBasket(): JSX.Element {
   const dispatch = useDispatch();
   const { marketIsBasketVisible } = useSelector(rdxMarketSelector);
   const { basketGrandTotal } = useSelector(rdxBasketSelector);
@@ -23,15 +23,15 @@ function Basket(): JSX.Element {
     <button
       type="button"
       onClick={toggleBasketOnClickHandler}
-      className={styles.basket}
+      className={styles.headerbasket}
     >
-      <IconBasket className={styles.basket__icon} />
-      <span className={styles.basket__amount}>
-        <span className={styles.basket__amount__currency}>{constants.app.currency}</span>
+      <IconBasket className={styles.headerbasket__icon} />
+      <span className={styles.headerbasket__amount}>
+        <span className={styles.headerbasket__amount__currency}>{constants.app.currency}</span>
         <span>{convertPriceToLocaleString(basketGrandTotal)}</span>
       </span>
     </button>
   );
 }
 
-export default Basket;
+export default HeaderBasket;
