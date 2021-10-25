@@ -13,6 +13,7 @@ function ItemTypes(): JSX.Element {
     loadingProductItems,
     loadingProductTypes,
     failureProductTypes,
+    noResultsProductTypes,
     dataProductTypes,
     filterType,
   } = useSelector(rdxProductsSelector);
@@ -35,11 +36,13 @@ function ItemTypes(): JSX.Element {
         placeholder.map((_, index) => <span key={index} className={[styles.itemtypes__button, styles['itemtypes__button--placeholder'] || ''].join(' ')}></span>)
       }
       {
-        failureProductTypes &&
-        <p className={styles.itemtypes__failure}>{constants.text.common.failure}</p>
+        (failureProductTypes || noResultsProductTypes) &&
+        <p className={styles.itemtypes__exception}>{(
+          failureProductTypes ? constants.text.common.failure : constants.text.common.noData
+        )}</p>
       }
       {
-        (!loadingProductTypes && !failureProductTypes && dataProductTypes.length > 0) &&
+        (!loadingProductTypes && !failureProductTypes && !noResultsProductTypes) &&
         dataProductTypes.map((type: IApiProductType, index: number) => (
           <button
             key={index}

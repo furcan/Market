@@ -46,6 +46,7 @@ const productsReducer = (state = rdxProductsInitialState, action: IReduxProducts
         ...state,
         loadingProductTypes: true,
         failureProductTypes: false,
+        noResultsProductTypes: false,
       };
 
     case rdxProductsActionTypes.PRODUCTS_TYPES_GET_DATA_FAILURE:
@@ -53,6 +54,15 @@ const productsReducer = (state = rdxProductsInitialState, action: IReduxProducts
         ...state,
         loadingProductTypes: false,
         failureProductTypes: true,
+        noResultsProductTypes: false,
+      };
+
+    case rdxProductsActionTypes.PRODUCTS_TYPES_GET_DATA_NORESULTS:
+      return {
+        ...state,
+        loadingProductTypes: false,
+        failureProductTypes: false,
+        noResultsProductTypes: true,
       };
 
     case rdxProductsActionTypes.PRODUCTS_TYPES_SET_DATA:
@@ -60,6 +70,7 @@ const productsReducer = (state = rdxProductsInitialState, action: IReduxProducts
         ...state,
         loadingProductTypes: false,
         failureProductTypes: false,
+        noResultsProductTypes: false,
         dataProductTypes: action.actionDataProductTypes || rdxProductsInitialState.dataProductTypes,
       };
     // Product Data Types: end

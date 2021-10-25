@@ -11,6 +11,7 @@ interface IReduxProductsState {
   filterTags: string | null;
   loadingProductTypes: boolean;
   failureProductTypes: boolean;
+  noResultsProductTypes: boolean;
   dataProductTypes: IApiProductType[];
   loadingProductBrands: boolean;
   failureProductBrands: boolean;
@@ -35,6 +36,7 @@ interface IReduxProductsActionTypes {
   PRODUCTS_FILTER_SET_BRANDS: string;
   PRODUCTS_TYPES_GET_DATA_LOADING: string;
   PRODUCTS_TYPES_GET_DATA_FAILURE: string;
+  PRODUCTS_TYPES_GET_DATA_NORESULTS: string;
   PRODUCTS_TYPES_SET_DATA: string;
   PRODUCTS_BRANDS_GET_DATA_LOADING: string;
   PRODUCTS_BRANDS_GET_DATA_FAILURE: string;

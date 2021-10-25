@@ -12,6 +12,7 @@ const rdxProductsActionTypes: IReduxProductsActionTypes = {
   PRODUCTS_FILTER_SET_BRANDS: 'PRODUCTS_FILTER_SET_BRANDS',
   PRODUCTS_TYPES_GET_DATA_LOADING: 'PRODUCTS_TYPES_GET_DATA_LOADING',
   PRODUCTS_TYPES_GET_DATA_FAILURE: 'PRODUCTS_TYPES_GET_DATA_FAILURE',
+  PRODUCTS_TYPES_GET_DATA_NORESULTS: 'PRODUCTS_TYPES_GET_DATA_NORESULTS',
   PRODUCTS_TYPES_SET_DATA: 'PRODUCTS_TYPES_SET_DATA',
   PRODUCTS_BRANDS_GET_DATA_LOADING: 'PRODUCTS_BRANDS_GET_DATA_LOADING',
   PRODUCTS_BRANDS_GET_DATA_FAILURE: 'PRODUCTS_BRANDS_GET_DATA_FAILURE',
@@ -79,6 +80,10 @@ const productsTypesGetDataFailure = (): IReduxProductsActions => ({
   type: rdxProductsActionTypes.PRODUCTS_TYPES_GET_DATA_FAILURE,
 });
 
+const productsTypesGetDataNoResults = (): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_TYPES_GET_DATA_NORESULTS,
+});
+
 const productsTypesSetData = (dataProductTypes: IApiProductType[]): IReduxProductsActions => ({
   type: rdxProductsActionTypes.PRODUCTS_TYPES_SET_DATA,
   actionDataProductTypes: dataProductTypes,
@@ -96,11 +101,15 @@ const rdxProductsTypesGetDataAsync = (): IReduxProductsDispatch => async (dispat
       throw new Error();
     }
 
-    dispatch(productsTypesSetData(data));
+    if (data.length > 0) {
+      dispatch(productsTypesSetData(data));
 
-    const theFirstType: IApiProductType | undefined = data.find((type: IApiProductType) => type);
-    if (theFirstType) {
-      dispatch(productsFilterSetType(theFirstType.queryString));
+      const theFirstType: IApiProductType | undefined = data.find((type: IApiProductType) => type);
+      if (theFirstType) {
+        dispatch(productsFilterSetType(theFirstType.queryString));
+      }
+    } else {
+      dispatch(productsTypesGetDataNoResults());
     }
   } catch {
     dispatch(productsTypesGetDataFailure());

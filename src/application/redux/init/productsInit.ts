@@ -9,6 +9,7 @@ const rdxProductsInitialState: IReduxProductsState = {
   filterTags: null,
   loadingProductTypes: true,
   failureProductTypes: false,
+  noResultsProductTypes: false,
   dataProductTypes: [],
   loadingProductBrands: true,
   failureProductBrands: false,
