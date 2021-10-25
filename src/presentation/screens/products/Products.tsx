@@ -68,8 +68,6 @@ function Products(): JSX.Element {
           onClickDispatcher={changeFilterSortOrderOnClickHandler}
         />
         <FilterBrands
-          withSearch
-          withMargin
           title={constants.text.filters.titleBrands}
           itemsLoading={loadingProductBrands}
           itemsFailure={failureProductBrands}
@@ -77,6 +75,9 @@ function Products(): JSX.Element {
           items={dataProductBrands}
           itemsTotalCount={dataProductBrandsTotalCount}
           onClicksDispatcher={changeFilterBrandsOnClicksHandler}
+          withMargin
+          withSearch
+          placeholderSearchInput={constants.text.filters.placeholderInputBrands}
         />
         {/* <FilterTags
           withSearch

@@ -29,6 +29,8 @@ interface IConstants {
       titleBrands: string;
       titleTags: string;
       buttonAll: string;
+      placeholderInputBrands: string;
+      placeholderInputTags: string;
     };
     products: {
       mainTitle: string;
@@ -70,6 +72,8 @@ const constants: IConstants = {
       titleBrands: 'Brands',
       titleTags: 'Tags',
       buttonAll: 'All',
+      placeholderInputBrands: 'Search brand',
+      placeholderInputTags: 'Search tag',
     },
     products: {
       mainTitle: 'Products',

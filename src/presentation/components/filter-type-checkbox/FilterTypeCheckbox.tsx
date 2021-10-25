@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { FiInfo as IconNoData, FiAlertTriangle as IconFailure } from 'react-icons/fi';
+import { FiInfo as IconNoData, FiAlertTriangle as IconFailure, FiX as IconClear } from 'react-icons/fi';
 
 import { constants } from 'application/constants';
 import { IApiProductBrand, IApiProductTag } from 'application/api';
@@ -11,33 +11,35 @@ import IconCheck from 'presentation/components/icons/IconCheck';
 import styles from 'presentation/components/filter-type-checkbox/FilterTypeCheckbox.module.scss';
 
 interface IFilterTypeCheckbox {
-  withSearch: boolean;
-  withMargin: boolean;
   title: string;
   itemsLoading: boolean;
   itemsFailure: boolean;
   itemsNoResults: boolean;
   items: IApiProductBrand[] | IApiProductTag[];
   itemsTotalCount: number;
+  withSearch?: boolean;
+  withMargin?: boolean;
+  placeholderSearchInput: string;
   onClicksDispatcher: (filterParam: string | null) => void;
 }
 
 function FilterTypeCheckbox({
-  withSearch,
-  withMargin,
   title,
   itemsLoading,
   itemsFailure,
   itemsNoResults,
   items,
   itemsTotalCount,
+  withSearch,
+  placeholderSearchInput,
+  withMargin,
   onClicksDispatcher,
 }: IFilterTypeCheckbox): JSX.Element {
   const { loadingProductItems } = useSelector(rdxProductsSelector);
   const placeholder: string[] = Array((constants.api.limitProductsBrands)).fill('');
 
+  // Filters: begin
   const [stateFilters, setStateFilters] = useState<string | null>(null);
-
   const updateStateFiltersOnClickHandler = (filter: string | null): void => {
     if (stateFilters && filter) {
       let filters = null;
@@ -55,6 +57,19 @@ function FilterTypeCheckbox({
       onClicksDispatcher(filter);
     }
   };
+  // Filters: end
+
+  // SearchTerm: begin
+  const [stateSearchTerm, setStateSearchTerm] = useState<string>('');
+  const setSearchTermOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    if (event.target instanceof HTMLInputElement) {
+      setStateSearchTerm(event.target.value);
+    }
+  };
+  const clearSearchTermOnClickHandler = (): void => {
+    setStateSearchTerm('');
+  };
+  // SearchTerm: end
 
 
   return (
@@ -71,7 +86,26 @@ function FilterTypeCheckbox({
             styles.ft_checkbox__search,
             ((itemsLoading || items.length < 1) ? (styles['ft_checkbox__search--disabled'] || '') : ''),
           ].join(' ')}>
-            <p>TODO: Search</p>
+            <input
+              type="text"
+              autoComplete="off"
+              autoCapitalize="off"
+              spellCheck="false"
+              placeholder={placeholderSearchInput || ''}
+              value={stateSearchTerm}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => setSearchTermOnChangeHandler(event)}
+              className={styles.ft_checkbox__search__input}
+            />
+            {
+              (stateSearchTerm.length > 0) &&
+              <button
+                type="button"
+                onClick={clearSearchTermOnClickHandler}
+                className={styles.ft_checkbox__search__clear}
+              >
+                <IconClear className={styles.ft_checkbox__search__clear__icon} />
+              </button>
+            }
           </div>
         }
         <ul className={styles.ft_checkbox__list}>
@@ -122,24 +156,26 @@ function FilterTypeCheckbox({
                 </span>
               </li>
               {
-                items.map((item: IApiProductBrand | IApiProductTag, index: number) => (
-                  <li key={index} className={styles.ft_checkbox__list__item}>
-                    <button
-                      type="button"
-                      onClick={() => updateStateFiltersOnClickHandler(item.queryString)}
-                      className={[
-                        styles.ft_checkbox__list__item__button,
-                        (stateFilters?.includes(item.queryString) ? (styles['ft_checkbox__list__item__button--selected'] || '') : ''),
-                      ].join(' ')}
-                    >
-                      {stateFilters?.includes(item.queryString) && <IconCheck className={styles.ft_checkbox__list__item__button__icon} />}
-                    </button>
-                    <span className={styles.ft_checkbox__list__item__text}>
-                      <span>{item.name}</span>
-                      <span className={styles.ft_checkbox__list__item__text__count}>{`(${item.relatedProductsCount})`}</span>
-                    </span>
-                  </li>
-                ))
+                items
+                  .filter((item) => item.name.toLocaleLowerCase('en').includes(stateSearchTerm.toLocaleLowerCase('en')))
+                  .map((item: IApiProductBrand | IApiProductTag, index: number) => (
+                    <li key={index} className={styles.ft_checkbox__list__item}>
+                      <button
+                        type="button"
+                        onClick={() => updateStateFiltersOnClickHandler(item.queryString)}
+                        className={[
+                          styles.ft_checkbox__list__item__button,
+                          (stateFilters?.includes(item.queryString) ? (styles['ft_checkbox__list__item__button--selected'] || '') : ''),
+                        ].join(' ')}
+                      >
+                        {stateFilters?.includes(item.queryString) && <IconCheck className={styles.ft_checkbox__list__item__button__icon} />}
+                      </button>
+                      <span className={styles.ft_checkbox__list__item__text}>
+                        <span>{item.name}</span>
+                        <span className={styles.ft_checkbox__list__item__text__count}>{`(${item.relatedProductsCount})`}</span>
+                      </span>
+                    </li>
+                  ))
               }
             </>
           }
