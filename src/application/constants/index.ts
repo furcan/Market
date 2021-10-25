@@ -21,11 +21,13 @@ interface IConstants {
   text: {
     common: {
       failure: string;
+      noData: string;
     };
     filters: {
       titleSorting: string;
       titleBrands: string;
       titleTags: string;
+      buttonAll: string;
     };
     products: {
       mainTitle: string;
@@ -60,11 +62,13 @@ const constants: IConstants = {
   text: {
     common: {
       failure: 'Something went wrong.',
+      noData: 'No results found.',
     },
     filters: {
       titleSorting: 'Sorting',
       titleBrands: 'Brands',
       titleTags: 'Tags',
+      buttonAll: 'All',
     },
     products: {
       mainTitle: 'Products',

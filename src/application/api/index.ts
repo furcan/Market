@@ -12,13 +12,20 @@ interface IApiProductBrand {
   id: number;
   slug: string;
   name: string;
-  queryStringPrefix: string;
+  queryString: string;
+  relatedProductsCount: number;
+}
+
+interface IApiProductBrands {
+  brands: IApiProductBrand[];
+  totalCount: number;
 }
 
 interface IApiProductTag {
   id: number;
   name: string;
-  queryStringPrefix: string;
+  queryString: string;
+  relatedProductsCount: number;
 }
 
 interface IApiProductItem {
@@ -28,8 +35,8 @@ interface IApiProductItem {
 }
 
 interface IApiProductItems {
-  totalCount: number;
   products: IApiProductItem[];
+  totalCount: number;
 }
 
 class Api {
@@ -60,6 +67,38 @@ class Api {
       }
 
       return data;
+
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error?.message : '';
+      devLoggerError(errorMessage);
+      return null;
+    }
+  };
+
+  getProductBrands = async (): Promise<IApiProductBrands | null> => {
+    try {
+      const _headers = this.headers;
+
+      const apiUrl = `${constants.api.urlBase}${constants.api.pathBrands}?_limit=${constants.api.limitProductsBrands}`;
+      const response = await fetch(apiUrl, {
+        method: 'get',
+        headers: _headers,
+      });
+
+      if (!response.ok) {
+        throw new Error();
+      }
+
+      const data: IApiProductBrand[] | null = await response.json();
+      if (!Array.isArray(data)) {
+        throw new Error();
+      }
+
+      const totalRelatedProductsCount = 0; // TODO:
+      return {
+        brands: data,
+        totalCount: totalRelatedProductsCount,
+      };
 
     } catch (error) {
       const errorMessage = error instanceof Error ? error?.message : '';
@@ -118,6 +157,7 @@ class Api {
 export type {
   IApiProductType,
   IApiProductBrand,
+  IApiProductBrands,
   IApiProductTag,
   IApiProductItem,
   IApiProductItems,

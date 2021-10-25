@@ -15,6 +15,8 @@ export {
   rdxProductsFilterSetPageAsync,
   rdxProductsFilterSetSortOrderAsync,
   rdxProductsFilterSetTypeAsync,
+  rdxProductsFilterSetBrandsAsync,
   rdxProductsTypesGetDataAsync,
+  rdxProductsBrandsGetDataAsync,
   rdxProductsItemsGetDataAsync,
 } from 'application/redux/actions/productsActions';

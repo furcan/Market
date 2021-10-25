@@ -13,8 +13,9 @@ function Products(): JSX.Element {
   const dispatch = useDispatch();
   const {
     filterPage,
-    filterType,
     filterSortOrder,
+    filterType,
+    filterBrands,
     loadingProductItems,
     failureProductsItems,
     dataProductItems,
@@ -24,15 +25,20 @@ function Products(): JSX.Element {
   useEffect(() => {
     if (filterType) {
       dispatch(rdxProductsItemsGetDataAsync(
-        [filterType, filterSortOrder], // TODO, FILTERS WILL BE EXTENDED
+        [ // TODO, FILTERS WILL BE EXTENDED
+          filterSortOrder,
+          filterType,
+          (filterBrands || ''),
+        ],
         filterPage,
       ));
     }
   }, [
     dispatch,
     filterPage,
-    filterType,
     filterSortOrder,
+    filterType,
+    filterBrands,
   ]);
 
 

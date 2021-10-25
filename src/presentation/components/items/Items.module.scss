@@ -4,7 +4,7 @@
   transition: $transition_opacity;
   width: 100%;
   min-height: 16rem;
-  padding: 1.25rem;
+  padding: 1.25rem 1.25rem 0;
   background: $color_white;
   border-radius: 0.125rem;
   box-shadow: $boxshadow_base;
@@ -90,18 +90,6 @@
     &:nth-child(4n - 1) {
       @include media_up($breakpoint_mobile) {
         margin-left: 1.5rem;
-      }
-    }
-
-    &:nth-last-child(1),
-    &:nth-last-child(2) {
-      margin-bottom: 0;
-    }
-
-    &:nth-last-child(3),
-    &:nth-last-child(4) {
-      @include media_up($breakpoint_mobile) {
-        margin-bottom: 0;
       }
     }
 

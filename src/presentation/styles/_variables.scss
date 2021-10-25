@@ -20,9 +20,11 @@ $color_blue_light: #f2f0fd;
 $color_gray_maintitle: #6f6f6f;
 $color_gray_filtertitle: #697488;
 $color_gray_filterradio: #dfdee2;
+$color_gray_filtercheckbox: #a8a8a8;
 $color_gray_pagination: #697488;
 $color_purple: #5d3ebc;
 $color_purple_light: #f3f0fe;
+$color_purple_filtercheckbox: #5d38c2;
 $color_theme_green: #32c682;
 $color_theme_red: #ff5549;
 $color_theme_yellow: #eebf31;
@@ -58,6 +60,7 @@ $font_weight_extrabold: 800;
 
 // box shadows
 $boxshadow_base: 0 0.25rem 1.5rem rgba($color_purple, 0.04);
+$boxshadow_filter_checkbox: 0 0.0625rem 0.4375rem rgba($color_purple_filtercheckbox, 0.4);
 
 // constants
 $header_height_mobile: 4rem;

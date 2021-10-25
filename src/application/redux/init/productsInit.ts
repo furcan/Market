@@ -13,6 +13,7 @@ const rdxProductsInitialState: IReduxProductsState = {
   loadingProductItems: true,
   failureProductTypes: false,
   failureProductBrands: false,
+  dataProductBrandsTotalCount: 0,
   failureProductTags: false,
   failureProductsItems: false,
   dataProductTypes: [],

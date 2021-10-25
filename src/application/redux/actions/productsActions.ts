@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 
 import { EFilterSortOrder } from 'application/enumerations/filter-sort-order';
-import { Api, IApiProductItems, IApiProductType } from 'application/api';
+import { Api, IApiProductBrands, IApiProductItems, IApiProductType } from 'application/api';
 import { actionWindowScrollToTop, addSomeDelayAsync } from 'application/helpers';
 import { IReduxProductsActionTypes, IReduxProductsActions, IReduxProductsDispatch, IReduxProductsState } from 'application/redux/products';
 
@@ -9,9 +9,13 @@ const rdxProductsActionTypes: IReduxProductsActionTypes = {
   PRODUCTS_FILTER_SET_PAGE: 'PRODUCTS_FILTER_SET_PAGE',
   PRODUCTS_FILTER_SET_SORTORDER: 'PRODUCTS_FILTER_SET_SORTORDER',
   PRODUCTS_FILTER_SET_TYPE: 'PRODUCTS_FILTER_SET_TYPE',
+  PRODUCTS_FILTER_SET_BRANDS: 'PRODUCTS_FILTER_SET_BRANDS',
   PRODUCTS_TYPES_GET_DATA_LOADING: 'PRODUCTS_TYPES_GET_DATA_LOADING',
   PRODUCTS_TYPES_GET_DATA_FAILURE: 'PRODUCTS_TYPES_GET_DATA_FAILURE',
   PRODUCTS_TYPES_SET_DATA: 'PRODUCTS_TYPES_SET_DATA',
+  PRODUCTS_BRANDS_GET_DATA_LOADING: 'PRODUCTS_BRANDS_GET_DATA_LOADING',
+  PRODUCTS_BRANDS_GET_DATA_FAILURE: 'PRODUCTS_BRANDS_GET_DATA_FAILURE',
+  PRODUCTS_BRANDS_SET_DATA: 'PRODUCTS_BRANDS_SET_DATA',
   PRODUCTS_ITEMS_GET_DATA_LOADING: 'PRODUCTS_ITEMS_GET_DATA_LOADING',
   PRODUCTS_ITEMS_GET_DATA_FAILURE: 'PRODUCTS_ITEMS_GET_DATA_FAILURE',
   PRODUCTS_ITEMS_SET_DATA: 'PRODUCTS_ITEMS_SET_DATA',
@@ -53,6 +57,18 @@ const rdxProductsFilterSetTypeAsync = (type: string): IReduxProductsDispatch => 
 };
 // Products Filter Set Type: end
 
+// Products Filter Set Brands: begin
+const productsFilterSetBrands = (brands: string | null): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_FILTER_SET_BRANDS,
+  actionFilterBrands: brands,
+});
+
+const rdxProductsFilterSetBrandsAsync = (brands: string | null): IReduxProductsDispatch => async (dispatch: Dispatch<IReduxProductsActions>) => {
+  dispatch(productsFilterSetBrands(brands));
+};
+// Products Filter Set Brands: end
+
+
 // Products Types Get & Set Data: begin
 const productsTypesGetDataLoading = (): IReduxProductsActions => ({
   type: rdxProductsActionTypes.PRODUCTS_TYPES_GET_DATA_LOADING,
@@ -90,6 +106,40 @@ const rdxProductsTypesGetDataAsync = (): IReduxProductsDispatch => async (dispat
   }
 };
 // Products Types Get & Set Data: end
+
+// Products Brands Get & Set Data: begin
+const productsBrandsGetDataLoading = (): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_BRANDS_GET_DATA_LOADING,
+});
+
+const productsBrandsGetDataFailure = (): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_BRANDS_GET_DATA_FAILURE,
+});
+
+const productsBrandsSetData = (dataProductBrands: IApiProductBrands): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_BRANDS_SET_DATA,
+  actionDataProductBrands: dataProductBrands,
+});
+
+const rdxProductsBrandsGetDataAsync = (): IReduxProductsDispatch => async (dispatch: Dispatch<IReduxProductsActions>) => {
+  try {
+    dispatch(productsBrandsGetDataLoading());
+
+    await addSomeDelayAsync(500);
+
+    const data: IApiProductBrands | null = await new Api().getProductBrands();
+
+    if (!data) {
+      throw new Error();
+    }
+
+    dispatch(productsBrandsSetData(data));
+  } catch {
+    dispatch(productsBrandsGetDataFailure());
+  }
+};
+// Products Brands Get & Set Data: end
+
 
 // Products Items Get & Set Data: begin
 const productsItemsGetDataLoading = (): IReduxProductsActions => ({
@@ -132,6 +182,8 @@ export {
   rdxProductsFilterSetPageAsync,
   rdxProductsFilterSetSortOrderAsync,
   rdxProductsFilterSetTypeAsync,
+  rdxProductsFilterSetBrandsAsync,
   rdxProductsTypesGetDataAsync,
+  rdxProductsBrandsGetDataAsync,
   rdxProductsItemsGetDataAsync,
 };
