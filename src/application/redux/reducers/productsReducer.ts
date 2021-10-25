@@ -39,6 +39,15 @@ const productsReducer = (state = rdxProductsInitialState, action: IReduxProducts
       };
     // Product Filter Brands: end
 
+    // Product Filter Tags: begin
+    case rdxProductsActionTypes.PRODUCTS_FILTER_SET_TAGS:
+      return {
+        ...state,
+        filterTags: action.actionFilterTags || rdxProductsInitialState.filterTags,
+        filterPage: rdxProductsInitialState.filterPage,
+      };
+    // Product Filter Tags: end
+
 
     // Product Data Types: begin
     case rdxProductsActionTypes.PRODUCTS_TYPES_GET_DATA_LOADING:
@@ -110,6 +119,42 @@ const productsReducer = (state = rdxProductsInitialState, action: IReduxProducts
         dataProductBrandsTotalCount: action.actionDataProductBrands?.totalProductsCount || rdxProductsInitialState.dataProductBrandsTotalCount,
       };
     // Product Data Brands: end
+
+    // Product Data Tags: begin
+    case rdxProductsActionTypes.PRODUCTS_TAGS_GET_DATA_LOADING:
+      return {
+        ...state,
+        loadingProductTags: true,
+        failureProductTags: false,
+        noResultsProductTags: false,
+      };
+
+    case rdxProductsActionTypes.PRODUCTS_TAGS_GET_DATA_FAILURE:
+      return {
+        ...state,
+        loadingProductTags: false,
+        failureProductTags: true,
+        noResultsProductTags: false,
+      };
+
+    case rdxProductsActionTypes.PRODUCTS_TAGS_GET_DATA_NORESULTS:
+      return {
+        ...state,
+        loadingProductTags: false,
+        failureProductTags: false,
+        noResultsProductTags: true,
+      };
+
+    case rdxProductsActionTypes.PRODUCTS_TAGS_SET_DATA:
+      return {
+        ...state,
+        loadingProductTags: false,
+        failureProductTags: false,
+        noResultsProductTags: false,
+        dataProductTags: action.actionDataProductTags?.data || rdxProductsInitialState.dataProductTags,
+        dataProductTagsTotalCount: action.actionDataProductTags?.totalProductsCount || rdxProductsInitialState.dataProductTagsTotalCount,
+      };
+    // Product Data Tags: end
 
     // Products Data: begin
     case rdxProductsActionTypes.PRODUCTS_ITEMS_GET_DATA_LOADING:

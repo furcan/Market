@@ -28,6 +28,11 @@ interface IApiProductTag {
   relatedProductsCount: number;
 }
 
+interface IApiProductTags {
+  data: IApiProductTag[];
+  totalProductsCount: number;
+}
+
 interface IApiProductItem {
   slug: string;
   name: string;
@@ -103,6 +108,34 @@ class Api {
     }
   };
 
+  getProductTags = async (): Promise<IApiProductTags | null> => {
+    try {
+      const _headers = this.headers;
+
+      const apiUrl = `${constants.api.urlBase}${constants.api.pathTags}?_limit=${constants.api.limitProductsTags}`;
+      const response = await fetch(apiUrl, {
+        method: 'get',
+        headers: _headers,
+      });
+
+      if (!response.ok) {
+        throw new Error();
+      }
+
+      const data: IApiProductTags | null = await response.json();
+      if (!(data instanceof Object) || !('data' in data) || !('totalProductsCount' in data)) {
+        throw new Error();
+      }
+
+      return data;
+
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error?.message : '';
+      devLoggerError(errorMessage);
+      return null;
+    }
+  };
+
   getProductsByFiltersAndPage = async (filters: string[], page: number): Promise<IApiProductItems | null> => {
     try {
       const _headers = this.headers;
@@ -155,6 +188,7 @@ export type {
   IApiProductBrand,
   IApiProductBrands,
   IApiProductTag,
+  IApiProductTags,
   IApiProductItem,
   IApiProductItems,
 };

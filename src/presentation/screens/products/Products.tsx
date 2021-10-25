@@ -4,11 +4,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { constants } from 'application/constants';
 import { EFilterSortOrder, getFilterSortOrderText } from 'application/enumerations/filter-sort-order';
 import { rdxMarketSelector, rdxMarketFiltersVisibilityAsync } from 'application/redux/market';
-import { rdxProductsSelector, rdxProductsBrandsGetDataAsync, rdxProductsFilterSetSortOrderAsync, rdxProductsFilterSetBrandsAsync } from 'application/redux/products';
+import {
+  rdxProductsSelector,
+  rdxProductsFilterSetSortOrderAsync,
+  rdxProductsFilterSetBrandsAsync,
+  rdxProductsFilterSetTagsAsync,
+  rdxProductsBrandsGetDataAsync,
+  rdxProductsTagsGetDataAsync,
+} from 'application/redux/products';
 
 import FilterSorting from 'presentation/components/filter-type-radio/FilterTypeRadio';
 import FilterBrands from 'presentation/components/filter-type-checkbox/FilterTypeCheckbox';
-// import FilterTags from 'presentation/components/filter-type-checkbox/FilterTypeCheckbox'; // TODO
+import FilterTags from 'presentation/components/filter-type-checkbox/FilterTypeCheckbox';
 import ItemTypes from 'presentation/components/item-types/ItemTypes';
 import Items from 'presentation/components/items/Items';
 import ItemsPagination from 'presentation/components/items-pagination/ItemsPagination';
@@ -24,8 +31,11 @@ function Products(): JSX.Element {
     noResultsProductBrands,
     dataProductBrands,
     dataProductBrandsTotalCount,
-    // loadingProductTags, // TODO
-    // failureProductTags, // TODO
+    loadingProductTags,
+    failureProductTags,
+    noResultsProductTags,
+    dataProductTags,
+    dataProductTagsTotalCount,
     filterSortOrder,
   } = useSelector(rdxProductsSelector);
 
@@ -34,10 +44,10 @@ function Products(): JSX.Element {
     if (loadingProductBrands) {
       dispatch(rdxProductsBrandsGetDataAsync());
     }
-    // if (loadingProductTags) {
-    //   console.log('TODO: Get Tags');
-    // }
-  }, [dispatch, loadingProductBrands]);
+    if (loadingProductTags) {
+      dispatch(rdxProductsTagsGetDataAsync());
+    }
+  }, [dispatch, loadingProductBrands, loadingProductTags]);
   // Filter Brands & Tags Get Data: end
 
   // Filter SortOrder OnClick Handler: begin
@@ -53,6 +63,13 @@ function Products(): JSX.Element {
     dispatch(rdxMarketFiltersVisibilityAsync(false));
   };
   // Filter Brands OnClicks Handler: end
+
+  // Filter Tags OnClicks Handler: begin
+  const changeFilterTagsOnClicksHandler = (tags: string | null): void => {
+    dispatch(rdxProductsFilterSetTagsAsync(tags));
+    dispatch(rdxMarketFiltersVisibilityAsync(false));
+  };
+  // Filter Tags OnClicks Handler: end
 
   return (
     <div className={styles.products}>
@@ -79,13 +96,18 @@ function Products(): JSX.Element {
           withSearch
           placeholderSearchInput={constants.text.filters.placeholderInputBrands}
         />
-        {/* <FilterTags
-          withSearch
-          withMargin
+        <FilterTags
           title={constants.text.filters.titleTags}
           itemsLoading={loadingProductTags}
           itemsFailure={failureProductTags}
-        /> */}
+          itemsNoResults={noResultsProductTags}
+          items={dataProductTags}
+          itemsTotalCount={dataProductTagsTotalCount}
+          onClicksDispatcher={changeFilterTagsOnClicksHandler}
+          withMargin
+          withSearch
+          placeholderSearchInput={constants.text.filters.placeholderInputTags}
+        />
       </div>
       <div className={styles.products__content}>
         <h1 className={styles.products__content__title}>{constants.text.products.mainTitle}</h1>

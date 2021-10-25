@@ -16,6 +16,7 @@ function Products(): JSX.Element {
     filterSortOrder,
     filterType,
     filterBrands,
+    filterTags,
     loadingProductItems,
     failureProductItems,
     noResultsProductItems,
@@ -30,6 +31,7 @@ function Products(): JSX.Element {
           filterSortOrder,
           filterType,
           (filterBrands || ''),
+          (filterTags || ''),
         ],
         filterPage,
       ));
@@ -40,6 +42,7 @@ function Products(): JSX.Element {
     filterSortOrder,
     filterType,
     filterBrands,
+    filterTags,
   ]);
 
 
