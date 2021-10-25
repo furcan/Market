@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 
 import { EFilterSortOrder } from 'application/enumerations/filter-sort-order';
-import { IApiProductType, IApiProductBrand, IApiProductBrands, IApiProductTag, IApiProductItems, IApiProductItem } from 'application/api';
+import { IApiProductType, IApiProductBrands, IApiProductBrand, IApiProductTag, IApiProductItems, IApiProductItem } from 'application/api';
 
 interface IReduxProductsState {
   filterPage: number,
@@ -10,17 +10,18 @@ interface IReduxProductsState {
   filterBrands: string | null;
   filterTags: string | null;
   loadingProductTypes: boolean;
-  loadingProductBrands: boolean;
-  loadingProductTags: boolean;
-  loadingProductItems: boolean;
   failureProductTypes: boolean;
-  failureProductBrands: boolean;
-  failureProductTags: boolean;
-  failureProductsItems: boolean;
   dataProductTypes: IApiProductType[];
+  loadingProductBrands: boolean;
+  failureProductBrands: boolean;
+  noResultsProductBrands: boolean;
   dataProductBrands: IApiProductBrand[];
   dataProductBrandsTotalCount: number;
+  loadingProductTags: boolean;
+  failureProductTags: boolean;
   dataProductTags: IApiProductTag[];
+  loadingProductItems: boolean;
+  failureProductsItems: boolean;
   dataProductItems: IApiProductItem[];
   dataProductItemsTotalCount: number;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,6 +38,7 @@ interface IReduxProductsActionTypes {
   PRODUCTS_TYPES_SET_DATA: string;
   PRODUCTS_BRANDS_GET_DATA_LOADING: string;
   PRODUCTS_BRANDS_GET_DATA_FAILURE: string;
+  PRODUCTS_BRANDS_GET_DATA_NORESULTS: string;
   PRODUCTS_BRANDS_SET_DATA: string;
   PRODUCTS_ITEMS_GET_DATA_LOADING: string;
   PRODUCTS_ITEMS_GET_DATA_FAILURE: string;

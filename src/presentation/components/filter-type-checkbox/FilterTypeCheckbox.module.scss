@@ -155,8 +155,16 @@
         background: $color_white;
         box-shadow: $boxshadow_filter_checkbox;
 
+        &:not(&--selected):hover {
+          background: $color_blue_light;
+        }
+
         &--selected {
           background: $color_blue;
+
+          &:hover {
+            background: $color_blue_dark;
+          }
         }
 
         &__icon {

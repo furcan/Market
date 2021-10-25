@@ -70,6 +70,7 @@ const productsReducer = (state = rdxProductsInitialState, action: IReduxProducts
         ...state,
         loadingProductBrands: true,
         failureProductBrands: false,
+        noResultsProductBrands: false,
       };
 
     case rdxProductsActionTypes.PRODUCTS_BRANDS_GET_DATA_FAILURE:
@@ -77,6 +78,15 @@ const productsReducer = (state = rdxProductsInitialState, action: IReduxProducts
         ...state,
         loadingProductBrands: false,
         failureProductBrands: true,
+        noResultsProductBrands: false,
+      };
+
+    case rdxProductsActionTypes.PRODUCTS_BRANDS_GET_DATA_NORESULTS:
+      return {
+        ...state,
+        loadingProductBrands: false,
+        failureProductBrands: false,
+        noResultsProductBrands: true,
       };
 
     case rdxProductsActionTypes.PRODUCTS_BRANDS_SET_DATA:
@@ -84,8 +94,9 @@ const productsReducer = (state = rdxProductsInitialState, action: IReduxProducts
         ...state,
         loadingProductBrands: false,
         failureProductBrands: false,
-        dataProductBrands: action.actionDataProductBrands?.brands || rdxProductsInitialState.dataProductBrands,
-        dataProductBrandsTotalCount: action.actionDataProductBrands?.totalCount || rdxProductsInitialState.dataProductBrandsTotalCount,
+        noResultsProductBrands: false,
+        dataProductBrands: action.actionDataProductBrands?.data || rdxProductsInitialState.dataProductBrands,
+        dataProductBrandsTotalCount: action.actionDataProductBrands?.totalProductsCount || rdxProductsInitialState.dataProductBrandsTotalCount,
       };
     // Product Data Brands: end
 

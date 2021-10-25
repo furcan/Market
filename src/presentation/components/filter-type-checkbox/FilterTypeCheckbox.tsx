@@ -16,6 +16,7 @@ interface IFilterTypeCheckbox {
   title: string;
   itemsLoading: boolean;
   itemsFailure: boolean;
+  itemsNoResults: boolean;
   items: IApiProductBrand[] | IApiProductTag[];
   itemsTotalCount: number;
   onClicksDispatcher: (filterParam: string | null) => void;
@@ -27,6 +28,7 @@ function FilterTypeCheckbox({
   title,
   itemsLoading,
   itemsFailure,
+  itemsNoResults,
   items,
   itemsTotalCount,
   onClicksDispatcher,
@@ -83,7 +85,7 @@ function FilterTypeCheckbox({
             ))
           }
           {
-            (itemsFailure || (!itemsLoading && items.length < 1)) &&
+            (itemsFailure || itemsNoResults) &&
             <li className={[
               styles.ft_checkbox__list__item,
               (styles['ft_checkbox__list__item--exception'] || ''),
@@ -101,7 +103,7 @@ function FilterTypeCheckbox({
             </li>
           }
           {
-            (!itemsLoading && !itemsFailure && items.length > 1) &&
+            (!itemsLoading && !itemsFailure && !itemsNoResults) &&
             <>
               <li className={styles.ft_checkbox__list__item}>
                 <button

@@ -15,6 +15,7 @@ const rdxProductsActionTypes: IReduxProductsActionTypes = {
   PRODUCTS_TYPES_SET_DATA: 'PRODUCTS_TYPES_SET_DATA',
   PRODUCTS_BRANDS_GET_DATA_LOADING: 'PRODUCTS_BRANDS_GET_DATA_LOADING',
   PRODUCTS_BRANDS_GET_DATA_FAILURE: 'PRODUCTS_BRANDS_GET_DATA_FAILURE',
+  PRODUCTS_BRANDS_GET_DATA_NORESULTS: 'PRODUCTS_BRANDS_GET_DATA_NORESULTS',
   PRODUCTS_BRANDS_SET_DATA: 'PRODUCTS_BRANDS_SET_DATA',
   PRODUCTS_ITEMS_GET_DATA_LOADING: 'PRODUCTS_ITEMS_GET_DATA_LOADING',
   PRODUCTS_ITEMS_GET_DATA_FAILURE: 'PRODUCTS_ITEMS_GET_DATA_FAILURE',
@@ -116,6 +117,10 @@ const productsBrandsGetDataFailure = (): IReduxProductsActions => ({
   type: rdxProductsActionTypes.PRODUCTS_BRANDS_GET_DATA_FAILURE,
 });
 
+const productsBrandsGetDataNoResults = (): IReduxProductsActions => ({
+  type: rdxProductsActionTypes.PRODUCTS_BRANDS_GET_DATA_NORESULTS,
+});
+
 const productsBrandsSetData = (dataProductBrands: IApiProductBrands): IReduxProductsActions => ({
   type: rdxProductsActionTypes.PRODUCTS_BRANDS_SET_DATA,
   actionDataProductBrands: dataProductBrands,
@@ -127,13 +132,17 @@ const rdxProductsBrandsGetDataAsync = (): IReduxProductsDispatch => async (dispa
 
     await addSomeDelayAsync(500);
 
-    const data: IApiProductBrands | null = await new Api().getProductBrands();
+    const brands: IApiProductBrands | null = await new Api().getProductBrands();
 
-    if (!data) {
+    if (!brands) {
       throw new Error();
     }
 
-    dispatch(productsBrandsSetData(data));
+    if (brands.data.length > 0) {
+      dispatch(productsBrandsSetData(brands));
+    } else {
+      dispatch(productsBrandsGetDataNoResults());
+    }
   } catch {
     dispatch(productsBrandsGetDataFailure());
   }

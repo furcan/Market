@@ -17,8 +17,8 @@ interface IApiProductBrand {
 }
 
 interface IApiProductBrands {
-  brands: IApiProductBrand[];
-  totalCount: number;
+  data: IApiProductBrand[];
+  totalProductsCount: number;
 }
 
 interface IApiProductTag {
@@ -89,16 +89,12 @@ class Api {
         throw new Error();
       }
 
-      const data: IApiProductBrand[] | null = await response.json();
-      if (!Array.isArray(data)) {
+      const data: IApiProductBrands | null = await response.json();
+      if (!(data instanceof Object) || !('data' in data) || !('totalProductsCount' in data)) {
         throw new Error();
       }
 
-      const totalRelatedProductsCount = 0; // TODO:
-      return {
-        brands: data,
-        totalCount: totalRelatedProductsCount,
-      };
+      return data;
 
     } catch (error) {
       const errorMessage = error instanceof Error ? error?.message : '';

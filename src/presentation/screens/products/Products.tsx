@@ -21,6 +21,7 @@ function Products(): JSX.Element {
   const {
     loadingProductBrands,
     failureProductBrands,
+    noResultsProductBrands,
     dataProductBrands,
     dataProductBrandsTotalCount,
     // loadingProductTags, // TODO
@@ -72,6 +73,7 @@ function Products(): JSX.Element {
           title={constants.text.filters.titleBrands}
           itemsLoading={loadingProductBrands}
           itemsFailure={failureProductBrands}
+          itemsNoResults={noResultsProductBrands}
           items={dataProductBrands}
           itemsTotalCount={dataProductBrandsTotalCount}
           onClicksDispatcher={changeFilterBrandsOnClicksHandler}
