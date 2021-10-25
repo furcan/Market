@@ -1,5 +1,6 @@
 import * as packageJSON from '../../../package.json';
 
+type TApiLimits = 12 | 14 | 16 | 18 | 20 | 22 | 24;
 interface IConstants {
   api: {
     urlBase: string;
@@ -7,9 +8,9 @@ interface IConstants {
     pathTypes: string;
     pathBrands: string;
     pathTags: string;
-    limitProductsItems: number;
-    limitProductsBrands: number;
-    limitProductsTags: number;
+    limitProductsItems: TApiLimits;
+    limitProductsBrands: TApiLimits;
+    limitProductsTags: TApiLimits;
   };
   app: {
     url: string;
@@ -49,8 +50,8 @@ const constants: IConstants = {
     pathBrands: '/brands',
     pathTags: '/tags',
     limitProductsItems: 16,
-    limitProductsBrands: 18,
-    limitProductsTags: 18,
+    limitProductsBrands: 24,
+    limitProductsTags: 24,
   },
   app: {
     url: packageJSON?.homepage,
