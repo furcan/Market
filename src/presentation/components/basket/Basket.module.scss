@@ -10,7 +10,7 @@
   justify-content: flex-start;
   background: $color_white;
   border-radius: 0 0 0.125rem 0.125rem;
-  padding: 1.625rem 1.375rem 1rem;
+  padding: 1.625rem 1.4375rem 1rem;
 
   @include media_up($breakpoint_laptop) {
     border-radius: 0.125rem;
@@ -79,7 +79,7 @@
     &__item {
       position: relative;
       width: 100%;
-      padding: 0 5.5rem 1.25rem 0;
+      padding: 0 5.75rem 1.25rem 0;
       border-bottom: 0.0625rem solid $color_gray_basket_border;
 
       &:not(:first-child) {
@@ -118,8 +118,47 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: center;
-        background: greenyellow; //TODO
+        justify-content: space-between;
+
+        &__quantity {
+          width: 2rem;
+          height: 2rem;
+          color: $color_white;
+          background: $color_blue;
+          font-size: 0.9375rem;
+          line-height: 1;
+          font-weight: $font_weight_bold;
+          word-break: break-all;
+          word-break: break-word;
+          overflow: hidden;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+        }
+
+        &__button {
+          transition: $transition_color;
+          width: 1.5rem;
+          height: 1.5rem;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: $color_blue;
+
+          &:hover {
+            color: $color_blue_dark;
+          }
+
+          &__icon {
+            width: 1.125rem;
+            height: 1.125rem;
+            color: inherit;
+          }
+        }
       }
     }
   }

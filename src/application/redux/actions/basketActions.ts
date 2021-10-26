@@ -6,6 +6,7 @@ const rdxBasketActionTypes: IReduxBasketActionTypes = {
   BASKET_GRANDTOTAL_UPDATE: 'BASKET_GRANDTOTAL_UPDATE',
   BASKET_ITEM_ADD: 'BASKET_ITEM_ADD',
   BASKET_ITEM_INCRASE_QUANTITY: 'BASKET_ITEM_INCRASE_QUANTITY',
+  BASKET_ITEM_DECREASE_QUANTITY: 'BASKET_ITEM_DECREASE_QUANTITY',
 };
 
 const rdxBasketSelector = (state: IReduxBasketState): IReduxBasketState => state.basketReducer;
@@ -43,9 +44,23 @@ const rdxBasketIncraseItemQuantityAsync = (data: IReduxBasketItemUpdate): IRedux
 // Basket: Incrase Item Quantity: end
 
 
+// Basket: Decrease Item Quantity: begin
+const basketDecreaseItemQuantity = (data: IReduxBasketItemUpdate): IReduxBasketActions => ({
+  type: rdxBasketActionTypes.BASKET_ITEM_DECREASE_QUANTITY,
+  actionDecreaseItemQuantity: data,
+});
+
+const rdxBasketDecreaseItemQuantityAsync = (data: IReduxBasketItemUpdate): IReduxBasketDispatch => async (dispatch: Dispatch<IReduxBasketActions>) => {
+  dispatch(basketDecreaseItemQuantity(data));
+  dispatch(basketUpdateGrandTotal());
+};
+// Basket: Decrease Item Quantity: end
+
+
 export {
   rdxBasketActionTypes,
   rdxBasketSelector,
   rdxBasketAddItemAsync,
   rdxBasketIncraseItemQuantityAsync,
+  rdxBasketDecreaseItemQuantityAsync,
 };

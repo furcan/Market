@@ -21,6 +21,7 @@ interface IReduxBasketActionTypes {
   BASKET_GRANDTOTAL_UPDATE: string;
   BASKET_ITEM_ADD: string;
   BASKET_ITEM_INCRASE_QUANTITY: string;
+  BASKET_ITEM_DECREASE_QUANTITY: string;
 }
 
 interface IReduxBasketActions {
@@ -28,6 +29,7 @@ interface IReduxBasketActions {
   actionGrandTotal?: number;
   actionAddItem?: IReduxBasketItem;
   actionIncraseItemQuantity?: IReduxBasketItemUpdate;
+  actionDecreaseItemQuantity?: IReduxBasketItemUpdate;
 }
 
 interface IReduxBasketDispatch {

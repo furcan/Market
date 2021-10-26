@@ -1,16 +1,30 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FiShoppingBag as IconNoData } from 'react-icons/fi';
 
 import { constants } from 'application/constants';
 import { convertPriceToLocaleString } from 'application/helpers';
 import { rdxProductsSelector } from 'application/redux/products';
-import { IReduxBasketItem, rdxBasketSelector } from 'application/redux/basket';
+import { IReduxBasketItem, IReduxBasketItemUpdate, rdxBasketSelector, rdxBasketIncraseItemQuantityAsync, rdxBasketDecreaseItemQuantityAsync } from 'application/redux/basket';
+
+import IconMinus from 'presentation/components/icons/IconMinus';
+import IconPlus from 'presentation/components/icons/IconPlus';
 
 import styles from 'presentation/components/basket/Basket.module.scss';
 
 function Basket(): JSX.Element {
+  const dispatch = useDispatch();
   const { loadingProductItems } = useSelector(rdxProductsSelector);
   const { basketGrandTotal, basketItems } = useSelector(rdxBasketSelector);
+
+
+  const decreaseItemQuantityThatInTheBasketOnClickHandler = (data: IReduxBasketItemUpdate): void => {
+    dispatch(rdxBasketDecreaseItemQuantityAsync(data));
+  };
+
+  const increaseItemQuantityThatInTheBasketOnClickHandler = (data: IReduxBasketItemUpdate): void => {
+    dispatch(rdxBasketIncraseItemQuantityAsync(data));
+  };
+
 
   return (
     <div className={[
@@ -37,7 +51,27 @@ function Basket(): JSX.Element {
                     <span className={styles.basket__list__item__price__text}>{convertPriceToLocaleString(item.price)}</span>
                   </p>
                   <div className={styles.basket__list__item__actions}>
-                    <span>{`TODO: ${item.quantity}`}</span>
+                    <button
+                      type="button"
+                      onClick={() => decreaseItemQuantityThatInTheBasketOnClickHandler({
+                        slug: item.slug,
+                        quantity: 1,
+                      })}
+                      className={styles.basket__list__item__actions__button}
+                    >
+                      <IconMinus className={styles.basket__list__item__actions__button__icon} />
+                    </button>
+                    <span className={styles.basket__list__item__actions__quantity}>{item.quantity}</span>
+                    <button
+                      type="button"
+                      onClick={() => increaseItemQuantityThatInTheBasketOnClickHandler({
+                        slug: item.slug,
+                        quantity: 1,
+                      })}
+                      className={styles.basket__list__item__actions__button}
+                    >
+                      <IconPlus className={styles.basket__list__item__actions__button__icon} />
+                    </button>
                   </div>
                 </li>
               ))

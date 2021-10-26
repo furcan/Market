@@ -17,4 +17,5 @@ export {
   rdxBasketSelector,
   rdxBasketAddItemAsync,
   rdxBasketIncraseItemQuantityAsync,
+  rdxBasketDecreaseItemQuantityAsync,
 } from 'application/redux/actions/basketActions';
