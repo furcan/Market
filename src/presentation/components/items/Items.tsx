@@ -51,7 +51,7 @@ function Products(): JSX.Element {
 
 
   // Basket: Add Item && Incrase Item Quantity: begin
-  const updateItemQuantityThatInTheBasketOnClickHandler = (data: IReduxBasketItemUpdate): void => {
+  const increaseItemQuantityThatInTheBasketOnClickHandler = (data: IReduxBasketItemUpdate): void => {
     dispatch(rdxBasketIncraseItemQuantityAsync(data));
   };
 
@@ -112,7 +112,7 @@ function Products(): JSX.Element {
                 type="button"
                 onClick={
                   isItemInTheBasket ?
-                    () => updateItemQuantityThatInTheBasketOnClickHandler({
+                    () => increaseItemQuantityThatInTheBasketOnClickHandler({
                       slug: dataItem.slug,
                       quantity: 1,
                     })
