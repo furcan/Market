@@ -24,6 +24,9 @@ interface IConstants {
       failure: string;
       noData: string;
     };
+    basket: {
+      noData: string;
+    };
     filters: {
       titleSorting: string;
       titleBrands: string;
@@ -66,6 +69,9 @@ const constants: IConstants = {
     common: {
       failure: 'Something went wrong.',
       noData: 'No results found.',
+    },
+    basket: {
+      noData: 'Your basket is currently empty.',
     },
     filters: {
       titleSorting: 'Sorting',

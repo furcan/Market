@@ -19,6 +19,7 @@ import FilterTags from 'presentation/components/filter-type-checkbox/FilterTypeC
 import ItemTypes from 'presentation/components/item-types/ItemTypes';
 import Items from 'presentation/components/items/Items';
 import ItemsPagination from 'presentation/components/items-pagination/ItemsPagination';
+import Basket from 'presentation/components/basket/Basket';
 
 import styles from 'presentation/screens/products/Products.module.scss';
 
@@ -80,6 +81,7 @@ function Products(): JSX.Element {
 
   return (
     <div className={styles.products}>
+
       <button
         type="button"
         onClick={closeOverlayOnClickHandler}
@@ -88,6 +90,7 @@ function Products(): JSX.Element {
           ((marketIsFilterVisible || marketIsBasketVisible) ? (styles['products__overlay--visible'] || '') : ''),
         ].join(' ')}
       ></button>
+
       <div className={[
         styles.products__filters,
         (marketIsFilterVisible ? (styles['products__filters--visible'] || '') : ''),
@@ -124,18 +127,21 @@ function Products(): JSX.Element {
           placeholderSearchInput={constants.text.filters.placeholderInputTags}
         />
       </div>
+
       <div className={styles.products__content}>
         <h1 className={styles.products__content__title}>{constants.text.products.mainTitle}</h1>
         <ItemTypes />
         <Items />
         <ItemsPagination />
       </div>
+
       <div className={[
         styles.products__basket,
         (marketIsBasketVisible ? (styles['products__basket--visible'] || '') : ''),
       ].join(' ')}>
-        <h1>Basket</h1>
+        <Basket />
       </div>
+
     </div>
   );
 }

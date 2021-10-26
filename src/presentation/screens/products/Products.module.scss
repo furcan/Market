@@ -115,13 +115,13 @@ $basket_width: 18.5rem;
     transition: $transition_visibility;
     opacity: 0;
     visibility: hidden;
-    position: absolute;
-    top: -1rem;
-    right: -1rem;
+    position: fixed;
+    top: $header_height_mobile;
+    right: 0;
     width: 100%;
     max-width: $basket_width;
-    background: palevioletred;
-    padding: 2rem;
+    max-height: calc(100vh - $header_height_mobile);
+    overflow: hidden auto;
 
     &--visible {
       opacity: 1;
@@ -129,8 +129,9 @@ $basket_width: 18.5rem;
     }
 
     @include media_up($breakpoint_tablet) {
-      top: -2.5rem;
-      right: 0;
+      top: $header_height_desktop;
+      right: 1rem;
+      max-height: calc(100vh - $header_height_desktop);
     }
 
     @include media_up($breakpoint_laptop) {
@@ -138,6 +139,9 @@ $basket_width: 18.5rem;
       visibility: visible;
       position: relative;
       top: 0;
+      right: 0;
+      max-height: initial;
+      overflow: initial;
     }
   }
 }

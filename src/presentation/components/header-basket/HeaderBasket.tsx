@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { rdxMarketSelector, rdxMarketBasketVisibilityAsync } from 'application/redux/market';
-import { rdxBasketSelector } from 'application/redux/basket';
-
 import { constants } from 'application/constants';
 import { convertPriceToLocaleString } from 'application/helpers';
+import { rdxMarketSelector, rdxMarketBasketVisibilityAsync } from 'application/redux/market';
+import { rdxBasketSelector } from 'application/redux/basket';
 
 import IconBasket from 'presentation/components/icons/IconBasket';
 
