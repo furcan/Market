@@ -157,7 +157,7 @@ function FilterTypeCheckbox({
               </li>
               {
                 items
-                  .filter((item) => item.name.toLocaleLowerCase('en').includes(stateSearchTerm.toLocaleLowerCase('en')))
+                  .filter((item) => item.name.toLocaleLowerCase(constants.app.language).includes(stateSearchTerm.toLocaleLowerCase(constants.app.language)))
                   .map((item: IApiProductBrand | IApiProductTag, index: number) => (
                     <li key={index} className={styles.ft_checkbox__list__item}>
                       <button

@@ -1,6 +1,10 @@
 import * as packageJSON from '../../../package.json';
 
 type TApiLimits = 12 | 14 | 16 | 18 | 20 | 22 | 24;
+type TAppLanguages = 'tr' | 'en';
+type TAppLocales = 'tr-TR' | 'en-US';
+type TAppCurrencies = '₺' | '$';
+
 interface IConstants {
   api: {
     urlBase: string;
@@ -16,8 +20,9 @@ interface IConstants {
     url: string;
     version: string;
     name: string;
-    currency: string;
-    locale: string;
+    language: TAppLanguages;
+    locale: TAppLocales;
+    currency: TAppCurrencies;
   };
   text: {
     common: {
@@ -62,6 +67,7 @@ const constants: IConstants = {
     url: packageJSON?.homepage,
     version: packageJSON?.version,
     name: packageJSON?.description,
+    language: 'en',
     locale: 'tr-TR',
     currency: '₺',
   },
