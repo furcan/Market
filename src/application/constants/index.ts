@@ -1,3 +1,5 @@
+import { INotifyOptions } from 'notiflix';
+
 import * as packageJSON from '../../../package.json';
 
 type TApiLimits = 12 | 14 | 16 | 18 | 20 | 22 | 24;
@@ -28,6 +30,9 @@ interface IConstants {
     persistingLocalStorageKey: string;
     persistingDelay: number;
   };
+  notiflix: {
+    notify: INotifyOptions;
+  };
   text: {
     common: {
       failure: string;
@@ -49,6 +54,7 @@ interface IConstants {
       buttonAdd: string;
       buttonNext: string;
       buttonPrev: string;
+      messageAddedSuffix: string;
     };
     footer: {
       privacy: string;
@@ -79,6 +85,22 @@ const constants: IConstants = {
     persistingLocalStorageKey: 'app_persisting_state',
     persistingDelay: 500,
   },
+  notiflix: {
+    notify: {
+      width: '14rem',
+      borderRadius: '0.5rem',
+      position: 'right-bottom',
+      cssAnimationStyle: 'from-bottom',
+      useIcon: false,
+      plainText: false,
+      fontFamily: 'Open Sans',
+      fontSize: '0.8rem',
+      success: {
+        background: '#00ffb8',
+        textColor: '#191919',
+      },
+    },
+  },
   text: {
     common: {
       failure: 'Something went wrong.',
@@ -100,6 +122,7 @@ const constants: IConstants = {
       buttonAdd: 'Add',
       buttonNext: 'Next',
       buttonPrev: 'Prev',
+      messageAddedSuffix: 'has been added to your basket.',
     },
     footer: {
       privacy: 'Privacy Policy',

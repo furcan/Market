@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FiInfo as IconNoData, FiAlertTriangle as IconFailure } from 'react-icons/fi';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import { constants } from 'application/constants';
 import { convertPriceToLocaleString } from 'application/helpers';
@@ -51,12 +52,29 @@ function Products(): JSX.Element {
 
 
   // Basket: Add Item && Incrase Item Quantity: begin
-  const increaseItemQuantityThatInTheBasketOnClickHandler = (data: IReduxBasketItemUpdate): void => {
+  const notify = (itemName: string): void => {
+    Notify.success(
+      `<b>${itemName}</b> ${constants.text.products.messageAddedSuffix}`,
+      constants.notiflix.notify,
+    );
+  };
+
+  interface IIncreaseItemQuantity extends IReduxBasketItemUpdate {
+    name: string;
+  }
+
+  const increaseItemQuantityThatInTheBasketOnClickHandler = (item: IIncreaseItemQuantity): void => {
+    const data: IReduxBasketItemUpdate = {
+      slug: item.slug,
+      quantity: item.quantity,
+    };
     dispatch(rdxBasketIncraseItemQuantityAsync(data));
+    notify(item.name);
   };
 
   const addItemToTheBasketOnClickHandler = (item: IReduxBasketItem): void => {
     dispatch(rdxBasketAddItemAsync(item));
+    notify(item.name);
   };
   // Basket: Add Item && Incrase Item Quantity: end
 
@@ -87,7 +105,8 @@ function Products(): JSX.Element {
       {
         (!failureProductItems && !noResultsProductItems) &&
         dataProductItems.map((dataItem: IApiProductItem, index: number) => {
-          const isItemInTheBasket = basketItems.find((basketItem: IReduxBasketItem) => basketItem.slug === dataItem.slug) !== undefined;
+          const itemInTheBasket = basketItems.find((basketItem: IReduxBasketItem) => basketItem.slug === dataItem.slug);
+          const isItemInTheBasket = itemInTheBasket !== undefined;
 
           return (
             <div
@@ -115,6 +134,7 @@ function Products(): JSX.Element {
                     () => increaseItemQuantityThatInTheBasketOnClickHandler({
                       slug: dataItem.slug,
                       quantity: 1,
+                      name: dataItem.name,
                     })
                     :
                     () => addItemToTheBasketOnClickHandler({
@@ -124,10 +144,14 @@ function Products(): JSX.Element {
                       quantity: 1,
                     })
                 }
-                className={styles.items__single__button}
+                className={[
+                  styles.items__single__button,
+                  (isItemInTheBasket ? (styles['items__single__button--selected'] || '') : ''),
+                ].join(' ')}
               >
                 <span>{constants.text.products.buttonAdd}</span>
               </button>
+              {isItemInTheBasket && <span className={styles.items__single__info}>{itemInTheBasket.quantity}</span>}
             </div>
           );
         })
