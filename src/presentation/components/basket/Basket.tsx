@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { FiShoppingBag as IconNoData } from 'react-icons/fi';
+import { FiShoppingBag as IconNoData, FiTrash2 as IconDelete } from 'react-icons/fi';
 
 import { constants } from 'application/constants';
 import { convertPriceToLocaleString } from 'application/helpers';
@@ -59,7 +59,8 @@ function Basket(): JSX.Element {
                       })}
                       className={styles.basket__list__item__actions__button}
                     >
-                      <IconMinus className={styles.basket__list__item__actions__button__icon} />
+                      {item.quantity > 1 && <IconMinus className={styles.basket__list__item__actions__button__icon} />}
+                      {item.quantity < 2 && <IconDelete className={styles.basket__list__item__actions__button__icon} />}
                     </button>
                     <span className={styles.basket__list__item__actions__quantity}>{item.quantity}</span>
                     <button
