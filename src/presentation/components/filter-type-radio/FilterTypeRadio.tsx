@@ -9,7 +9,7 @@ import styles from 'presentation/components/filter-type-radio/FilterTypeRadio.mo
 interface IFilterTypeRadio {
   title: string;
   items: string[];
-  activeItem: string;
+  itemSelected: string;
   extractorItemText: (param: string) => string;
   onClickDispatcher: (filterParam: string) => void;
 }
@@ -17,7 +17,7 @@ interface IFilterTypeRadio {
 function FilterTypeRadio({
   title,
   items,
-  activeItem,
+  itemSelected,
   extractorItemText,
   onClickDispatcher,
 }: IFilterTypeRadio): JSX.Element {
@@ -36,13 +36,13 @@ function FilterTypeRadio({
               <li key={index} className={styles.ft_radio__list__item}>
                 <button
                   type="button"
-                  onClick={activeItem === item ? undefined : () => onClickDispatcher(item)}
+                  onClick={itemSelected === item ? undefined : () => onClickDispatcher(item)}
                   className={[
                     styles.ft_radio__list__item__button,
-                    (activeItem === item ? (styles['ft_radio__list__item__button--selected'] || '') : ''),
+                    (itemSelected === item ? (styles['ft_radio__list__item__button--selected'] || '') : ''),
                   ].join(' ')}
                 >
-                  {activeItem === item && <IconCheck className={styles.ft_radio__list__item__button__icon} />}
+                  {itemSelected === item && <IconCheck className={styles.ft_radio__list__item__button__icon} />}
                 </button>
                 <span className={styles.ft_radio__list__item__text}>{extractorItemText(item)}</span>
               </li>

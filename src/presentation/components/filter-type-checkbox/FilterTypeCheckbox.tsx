@@ -16,6 +16,7 @@ interface IFilterTypeCheckbox {
   itemsFailure: boolean;
   itemsNoResults: boolean;
   items: IApiProductBrand[] | IApiProductTag[];
+  itemsSelected: string | null;
   itemsTotalCount: number;
   withSearch?: boolean;
   withMargin?: boolean;
@@ -29,6 +30,7 @@ function FilterTypeCheckbox({
   itemsFailure,
   itemsNoResults,
   items,
+  itemsSelected,
   itemsTotalCount,
   withSearch,
   placeholderSearchInput,
@@ -39,7 +41,7 @@ function FilterTypeCheckbox({
   const placeholder: string[] = Array((constants.api.limitProductsBrands)).fill('');
 
   // Filters: begin
-  const [stateFilters, setStateFilters] = useState<string | null>(null);
+  const [stateFilters, setStateFilters] = useState<string | null>(itemsSelected);
   const updateStateFiltersOnClickHandler = (filter: string | null): void => {
     if (stateFilters && filter) {
       let filters = null;

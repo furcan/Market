@@ -38,6 +38,8 @@ function Products(): JSX.Element {
     dataProductTags,
     dataProductTagsTotalCount,
     filterSortOrder,
+    filterBrands,
+    filterTags,
   } = useSelector(rdxProductsSelector);
 
   // Filter Brands & Tags Get Data: begin
@@ -98,7 +100,7 @@ function Products(): JSX.Element {
         <FilterSorting
           title={constants.text.filters.titleSorting}
           items={Object.values(EFilterSortOrder)}
-          activeItem={filterSortOrder}
+          itemSelected={filterSortOrder}
           extractorItemText={getFilterSortOrderText}
           onClickDispatcher={changeFilterSortOrderOnClickHandler}
         />
@@ -108,6 +110,7 @@ function Products(): JSX.Element {
           itemsFailure={failureProductBrands}
           itemsNoResults={noResultsProductBrands}
           items={dataProductBrands}
+          itemsSelected={filterBrands}
           itemsTotalCount={dataProductBrandsTotalCount}
           onClicksDispatcher={changeFilterBrandsOnClicksHandler}
           withMargin
@@ -120,6 +123,7 @@ function Products(): JSX.Element {
           itemsFailure={failureProductTags}
           itemsNoResults={noResultsProductTags}
           items={dataProductTags}
+          itemsSelected={filterTags}
           itemsTotalCount={dataProductTagsTotalCount}
           onClicksDispatcher={changeFilterTagsOnClicksHandler}
           withMargin
