@@ -24,6 +24,10 @@ interface IConstants {
     locale: TAppLocales;
     currency: TAppCurrencies;
   };
+  redux: {
+    persistingLocalStorageKey: string;
+    persistingDelay: number;
+  };
   text: {
     common: {
       failure: string;
@@ -70,6 +74,10 @@ const constants: IConstants = {
     language: 'en',
     locale: 'tr-TR',
     currency: '₺',
+  },
+  redux: {
+    persistingLocalStorageKey: 'app_persisting_state',
+    persistingDelay: 500,
   },
   text: {
     common: {

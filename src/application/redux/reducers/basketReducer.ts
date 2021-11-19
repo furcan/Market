@@ -7,7 +7,7 @@ const basketReducer = (state = rdxBasketInitialState, action: IReduxBasketAction
     case rdxBasketActionTypes.BASKET_GRANDTOTAL_UPDATE:
       return {
         ...state,
-        basketGrandTotal: state.basketItems.map((item: IReduxBasketItem) => item.price * item.quantity).reduce((memo: number, price: number) => memo + price, 0),
+        basketGrandTotal: state.basketItems.map((item: IReduxBasketItem) => item.price * item.quantity).reduce((memo: number, total: number) => memo + total, 0),
       };
     // Update Grand Total: end
 

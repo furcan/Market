@@ -11,7 +11,6 @@ export {
   rdxBasketInitialState,
 } from 'application/redux/init/basketInit';
 
-
 export {
   rdxBasketActionTypes,
   rdxBasketSelector,

@@ -1,24 +1,19 @@
 import React from 'react';
 import { hydrate, render } from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { appReducers } from 'application/redux/reducers';
+import { ReduxProvider, reduxStore } from 'application/redux/store';
 
 import App from 'presentation/App';
 
 import 'presentation/styles/styles.global.scss';
 
 const MarketApp = (): JSX.Element => {
-  const store = createStore(appReducers, composeWithDevTools(applyMiddleware(thunk)));
   return (
-    <Provider store={store}>
+    <ReduxProvider store={reduxStore}>
       <React.StrictMode>
         <App />
       </React.StrictMode>
-    </Provider>
+    </ReduxProvider>
   );
 };
 
