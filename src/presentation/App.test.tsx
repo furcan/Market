@@ -3,12 +3,12 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import { appReducers } from 'application/redux/reducers';
+import { reduxAppReducers } from 'application/redux/reducers';
 
 import App from 'presentation/App';
 
 test('Render <App />', () => {
-  const store = createStore(appReducers, applyMiddleware(thunk));
+  const store = createStore(reduxAppReducers, applyMiddleware(thunk));
   render(<Provider store={store}><App /></Provider>);
 
   const header = screen.getByTestId('Header');
