@@ -1,7 +1,7 @@
 import { IReduxProductsActions, IReduxProductsState, rdxProductsInitialState, rdxProductsActionTypes } from 'application/redux/products';
 
 /* eslint-disable indent */
-const productsReducer = (state = rdxProductsInitialState, action: IReduxProductsActions): IReduxProductsState => {
+const productsReducer = (state = rdxProductsInitialState, action: IReduxProductsActions): Omit<IReduxProductsState, 'productsReducer'> => {
   switch (action.type) {
 
     // Product Filter Page: begin

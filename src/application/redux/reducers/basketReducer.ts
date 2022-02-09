@@ -1,7 +1,7 @@
 import { IReduxBasketActions, IReduxBasketState, rdxBasketInitialState, rdxBasketActionTypes, IReduxBasketItem } from 'application/redux/basket';
 
 /* eslint-disable indent */
-const basketReducer = (state = rdxBasketInitialState, action: IReduxBasketActions): IReduxBasketState => {
+const basketReducer = (state = rdxBasketInitialState, action: IReduxBasketActions): Omit<IReduxBasketState, 'basketReducer'> => {
   switch (action.type) {
     // Update Grand Total: begin
     case rdxBasketActionTypes.BASKET_GRANDTOTAL_UPDATE:

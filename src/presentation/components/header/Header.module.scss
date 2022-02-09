@@ -59,8 +59,16 @@ $basket_width: 8.0625rem;
     width: 7rem;
     height: auto;
 
+    @include media_up($breakpoint_mobile) {
+      width: 8rem;
+    }
+
     @include media_up($breakpoint_tablet) {
-      width: 8.875rem;
+      width: 10rem;
+    }
+
+    @include media_up($breakpoint_minibook) {
+      width: 14rem;
     }
 
     &__icon {

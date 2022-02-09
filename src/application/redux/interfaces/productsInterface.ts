@@ -28,8 +28,7 @@ interface IReduxProductsState {
   noResultsProductItems: boolean;
   dataProductItems: IApiProductItem[];
   dataProductItemsTotalCount: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  productsReducer?: any;
+  productsReducer: IReduxProductsState;
 }
 
 interface IReduxProductsActionTypes {

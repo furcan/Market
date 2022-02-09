@@ -3,8 +3,7 @@ import { Dispatch } from 'redux';
 interface IReduxMarketState {
   marketIsFilterVisible: boolean;
   marketIsBasketVisible: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  marketReducer?: any;
+  marketReducer: IReduxMarketState;
 }
 
 interface IReduxMarketActionTypes {

@@ -13,8 +13,7 @@ interface IReduxBasketItem extends IReduxBasketItemUpdate {
 interface IReduxBasketState {
   basketGrandTotal: number;
   basketItems: IReduxBasketItem[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  basketReducer?: any;
+  basketReducer: IReduxBasketState;
 }
 
 interface IReduxBasketActionTypes {

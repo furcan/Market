@@ -9,12 +9,12 @@
   align-items: flex-start;
   justify-content: flex-start;
   background: $color_white;
-  border-radius: 0 0 0.125rem 0.125rem;
+  border-radius: 0 0 0.25rem 0.25rem;
   padding: 1.625rem 1.4375rem 1rem;
 
   @include media_up($breakpoint_laptop) {
-    border-radius: 0.125rem;
-    border: 0.5rem solid $color_blue;
+    border-radius: 0.25rem;
+    border: 0.25rem solid $color_blue;
   }
 
   &--loading {
@@ -183,8 +183,8 @@
       line-height: 1rem;
       font-weight: $font_weight_semibold;
       color: $color_blue;
-      border: 0.125rem solid $color_blue;
-      border-radius: 0.125rem;
+      border: 0.25rem solid $color_blue;
+      border-radius: 0.25rem;
       word-break: break-all;
       word-break: break-word;
       text-align: right;

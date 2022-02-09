@@ -1,7 +1,7 @@
 import { EFilterSortOrder } from 'application/enumerations/filter-sort-order';
 import { IReduxProductsState } from 'application/redux/products';
 
-const rdxProductsInitialState: IReduxProductsState = {
+const rdxProductsInitialState: Omit<IReduxProductsState, 'productsReducer'> = {
   filterPage: 1,
   filterSortOrder: EFilterSortOrder.PriceAsc,
   filterType: null,

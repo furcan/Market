@@ -1,6 +1,6 @@
 import { IReduxBasketState } from 'application/redux/basket';
 
-const rdxBasketInitialState: IReduxBasketState = {
+const rdxBasketInitialState: Omit<IReduxBasketState, 'basketReducer'> = {
   basketGrandTotal: 0,
   basketItems: [],
 };

@@ -1,7 +1,7 @@
 import { IReduxMarketActions, IReduxMarketState, rdxMarketInitialState, rdxMarketActionTypes } from 'application/redux/market';
 
 /* eslint-disable indent */
-const marketReducer = (state = rdxMarketInitialState, action: IReduxMarketActions): IReduxMarketState => {
+const marketReducer = (state = rdxMarketInitialState, action: IReduxMarketActions): Omit<IReduxMarketState, 'marketReducer'> => {
   switch (action.type) {
     case rdxMarketActionTypes.MARKET_VISIBILITY_FILTERS:
       return {

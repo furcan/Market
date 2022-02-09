@@ -5,7 +5,7 @@ import * as packageJSON from '../../../package.json';
 type TApiLimits = 12 | 14 | 16 | 18 | 20 | 22 | 24;
 type TAppLanguages = 'tr' | 'en';
 type TAppLocales = 'tr-TR' | 'en-US';
-type TAppCurrencies = '₺' | '$';
+type TAppCurrencies = '₺' | '$' | '€';
 
 interface IConstants {
   api: {
@@ -78,8 +78,8 @@ const constants: IConstants = {
     version: packageJSON?.version,
     name: packageJSON?.description,
     language: 'en',
-    locale: 'tr-TR',
-    currency: '₺',
+    locale: 'en-US',
+    currency: '€',
   },
   redux: {
     persistingLocalStorageKey: 'app_persisting_state',
