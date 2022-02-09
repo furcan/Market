@@ -55,4 +55,4 @@ https://furcan.github.io/Market/
 
 ## Copyright
 
-Copyright &copy; 2021 Furkan MT. All rights reserved.
+Copyright &copy; 2022 Furkan MT. All rights reserved.
